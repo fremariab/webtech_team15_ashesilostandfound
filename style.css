@@ -1,0 +1,99 @@
+/*Remember to change the font.*/
+
+body {
+    margin: 0;
+    padding: 20px;
+    box-sizing: 0;
+    letter-spacing: 1px;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/*The whole template*/
+.overall{
+    display: flex;
+    background: #1C402E;
+}
+
+
+/*The right side of the template*/
+.items{
+    position: relative;
+    flex: 2;
+    background-color: #fff;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.side-menu {
+    position: relative;
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+
+.search-bar {
+    text-align: right;
+    float: right;
+    
+}
+input[type=text] {
+    float: right;
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+  }
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+  }
+  
+  .pagination a.active {
+    /*background-color: dodgerblue;*/
+    color: black;
+  }
+  
+  .pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+
+
+.lost {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+    
+
+
+/*
+.overall {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 430px;
+    width: 100%;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+*/ 
