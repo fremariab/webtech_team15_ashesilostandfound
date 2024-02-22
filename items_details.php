@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Items Details</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/item_details.css">
     <!--The items details page is for the lost items I guess. The owners post their pictures of the lost items with description and where it got 
     lost maybe if they remember. Someone chances upon it and report to the website and thence the claiming process begins.-->
 
