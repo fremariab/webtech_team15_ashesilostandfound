@@ -15,11 +15,15 @@
         <input type="checkbox" id="check">
         <div class="login form">
             <header>Login</header>
-            <form action="#">
-                <input type="text" placeholder="Enter your email">
-                <input type="password" placeholder="Enter your password">
+            <form action="../actions/login_action.php" method="post">
+                <?php
+                if (isset($_GET['error'])) { ?>
+                    <p class="error"><?php echo $_GET['error'] ?></p>
+                <?php } ?>
+                <input type="text" placeholder="Enter your email" name="email">
+                <input type="password" placeholder="Enter your password" name="passwrd">
                 <a href="#">Forgot password?</a>
-                <input type="button" class="button" value="Login">
+                <input type="submit" class="button" name="submit_button" value="Login">
             </form>
             <div class="signup">
                 <span class="signup">Don't have an account?
