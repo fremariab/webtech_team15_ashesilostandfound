@@ -35,8 +35,8 @@
     <p></p>
 </section>
 <div id="middle">
-    <button class="button2" onclick="window.location.href = '../login/login_view.php';">Register</button>
-    <button class="button2" onclick="window.location.href = '../login/signup_view.php';">Login</button>
+    <button class="button2" onclick="window.location.href = '../login/signup_view.php';">Register</button>
+    <button class="button2" onclick="window.location.href = '../login/login_view.php';">Login</button>
 </div>
 <section id="team">
     <h2 style="text-align: center;">Our Team</h2>
