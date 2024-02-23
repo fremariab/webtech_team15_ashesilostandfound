@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
 
 <head>
@@ -12,16 +11,63 @@
 
 <body>
     <div class="container">
-
         <div class="registration form">
             <header>Signup</header>
-            <form action="#">
-                <input type="text" placeholder="Enter your Student ID" required name="studID" />
+            <form action="../actions/signup_action.php" method="post">
+                <?php
+                if (isset($_GET['error'])) { ?>
+                    <p class="error" style="color:red"><?php echo $_GET['error'] ?></p>
+                <?php } ?>
+                <input type="text" name="fname" id="fname" pattern="[A-Za-z]{2,50}" placeholder="First Name">
 
-                <input type="text" placeholder="Enter your email" name="email">
-                <input type="password" placeholder="Create a password" name="passwrd">
-                <input type="password" placeholder="Confirm your password" name="cpasswrd">
-                <input type="button" class="button" value="Signup">
+                <input type="text" name="lname" id="lname" pattern="[A-Za-z]{2,50}" placeholder="Last Name">
+                <label style="color:gray;">Gender </label>
+
+                <div class="radio">
+                    <div class="radio-container">
+                        <input type="radio" name="gender" id="gender-male" value="male">
+                        <label for="gender-male">Male</label>
+                    </div>
+                    <div class="radio-container">
+                        <input type="radio" name="gender" id="gender-female" value="female">
+                        <label for="gender-female">Female</label>
+                    </div>
+                </div>
+                <?php
+                include "../settings/connection.php";
+
+                $sql = "SELECT * FROM role ORDER BY rid ASC";
+                $result = mysqli_query($conn, $sql);
+
+                if ($result->num_rows > 0) {
+                    $options = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                }
+                ?>
+                <label style="color:gray;">Role </label>
+                <select name="user-role" id="user-role">
+                    <?php
+                    foreach ($options as $option) {
+                        if ($option['rid'] != 1) {
+                    ?> <option value="<?php echo $option['rid']; ?>"><?php echo $option['rname']; ?> </option>
+                    <?php
+                        }
+                    }
+                    ?>
+                </select>
+
+                <input type="text" name="phone_number" id="phone_number" pattern="^[+\d\s]+$" placeholder="Phone Number">
+
+                <input type="email" name="register_email" id="register_email" placeholder="Email">
+
+                <input type="password" name="register_password" id="register_password" placeholder="Password">
+
+                <input type="password" name="register_password1" id="register_password1" placeholder="Confirm Password">
+
+                <input type="submit" class="button" name="submit_button" id="submit_button">
+                Sign Up
+                </button>
+
+
             </form>
             <div class="signup">
                 <span class="signup">Already have an account?

@@ -12,7 +12,7 @@ if (isset($_POST['submit_button'])) {
     }
 
     $user_mail = validate($_POST['email']);
-    $psswrd = validate($_POST['password']);
+    $psswrd = validate($_POST['passwrd']);
 
     if (empty($user_mail)) {
         header("Location: ../login/login_view.php?error=Email is required");
@@ -32,7 +32,7 @@ if (isset($_POST['submit_button'])) {
         if (password_verify($psswrd, $row['passwd'])) {
             $_SESSION['user_id'] = $row['uid'];
             $_SESSION['user_role'] = $row['rid'];
-            if ($_SESSION['user_id'] === 1) {
+            if ($_SESSION['user_role'] === 1) {
                 header("Location: ../admin/admin_dash.php");
                 exit();
             } else {
