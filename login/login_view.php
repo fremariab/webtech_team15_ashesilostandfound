@@ -27,7 +27,7 @@
             </form>
             <div class="signup">
                 <span class="signup">Don't have an account?
-                    <label for="check">Signup</label>
+                    <label for="check"><a href="signup_view.php">Signup<a></label>
                 </span>
             </div>
         </div>
