@@ -8,15 +8,15 @@
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- My CSS -->
-    <link rel="stylesheet" href="../css/admin_dash_style.css">
+    <link rel="stylesheet" href="../css/user_dash_style.css">
 
     <title>User Dashboard</title>
 </head>
 
 <body>
     <section id="sidebar">
-        <a href="#" class="brand">
-            <span class="text">Lost and Found</span>
+        <a href="../view/user_dash.php" class="brand">
+            <img src="../images/logo.png" height="64px" alt="">
         </a>
         <ul class="side-menu top">
             <li class="active">
@@ -26,25 +26,25 @@
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class='bx bxs-search-alt'></i>
+                <a href="../view/item_found.php">
+                    <i class='bx bxs-report'></i>
                     <span class="text">Search Found Items</span>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class='bx bxs-search-alt'></i>
+                <a href="../view/items_details.php">
+                    <i class='bx bxs-report'></i>
                     <span class="text">Search Lost Items</span>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <i class='bx bxs-hand-spock'></i>
+                <a href="../view/submission.php">
+                    <i class='bx bxs-report'></i>
                     <span class="text">Report Found Item</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="../view/ItemLostPage.php">
                     <i class='bx bxs-report'></i>
                     <span class="text">Report Lost Item</span>
                 </a>
@@ -93,12 +93,12 @@
         <main>
             <div class="head-title">
                 <div class="left">
-                    <h1>Dashboard</h1>
+                    <h1 style="color:#1C402E;">Dashboard</h1>
                     <ul class="breadcrumb">
                         <li>
                             <a href="#">Dashboard</a>
                         </li>
-                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li><i class='bx bx-chevron-right' style="color:#1C402E;"></i></li>
                         <li>
                             <a class="active" href="#">Home</a>
                         </li>

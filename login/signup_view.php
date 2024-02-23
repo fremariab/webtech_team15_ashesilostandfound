@@ -64,14 +64,11 @@
                 <input type="password" name="register_password1" id="register_password1" placeholder="Confirm Password">
 
                 <input type="submit" class="button" name="submit_button" id="submit_button">
-                Sign Up
-                </button>
-
 
             </form>
             <div class="signup">
                 <span class="signup">Already have an account?
-                    <label for="check">Login</label>
+                    <label for="check" style="color:#1C402E;"><a href="../login/login_view.php">Login</a></label>
                 </span>
             </div>
         </div>

@@ -18,17 +18,17 @@ li {
     --poppins: 'Poppins', sans-serif;
     --lato: 'Lato', sans-serif;
 
-    --light: #F9F9F9;
-    --blue: #3C91E6;
-    --light-blue: #CFE8FF;
+    --light: #1C402E;
+    --blue: #FDBD0F;
+    --light-blue: #FFF2C6;
     --grey: #eee;
     --dark-grey: #AAAAAA;
-    --dark: #342E37;
+    --dark: #FFF8ED;
     --red: #DB504A;
     --yellow: #FFCE26;
     --light-yellow: #FFF2C6;
     --orange: #FD7238;
-    --light-orange: #FFE0D3;
+    --light-orange: #FFF2C6;
 }
 
 html {
@@ -45,9 +45,6 @@ body {
     background: var(--grey);
     overflow-x: hidden;
 }
-
-
-
 
 
 /* SIDEBAR */

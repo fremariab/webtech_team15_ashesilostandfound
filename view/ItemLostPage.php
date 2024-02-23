@@ -8,12 +8,12 @@ include "../settings/core.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/ItemLostPage.css">
-    <title>Report a Found Item Form</title>
+    <title>Report a Lost Item Form</title>
 </head>
 
 <body>
     <div class="form-container">
-        <div class="form-header"><b>Report a Found Item</b></div>
+        <div class="form-header"><b>Report a Lost Item</b></div>
         <form action="../actions/item_lost_action.php" method="POST" enctype="multipart/form-data">
             <?php
             if (isset($_GET['error'])) { ?>
@@ -24,11 +24,11 @@ include "../settings/core.php";
                 <input type="text" id="itemName" name="itemName">
             </div>
             <div class="form-field">
-                <label style="color : green " for="locationFound">Location Found</label>
+                <label style="color : green " for="locationFound">Location Lost</label>
                 <input type="text" id="locationFound" name="locationFound">
             </div>
             <div class="form-field">
-                <label style="color : green; display: block" for="dateFound">Date Found</label>
+                <label style="color : green; display: block" for="dateFound">Date Lost</label>
                 <input type="date" id="date" name="time" placeholder="mm/dd/yyyy" style="width: 150px;">
             </div>
             <div class="form-field">

@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: rgb(15, 55, 15);
     display: flex;
     justify-content: center;
@@ -12,7 +14,7 @@ body {
     background-color: rgb(245, 228, 213);
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 400px;
 
 }
@@ -26,8 +28,8 @@ body {
 }
 
 .separator {
-    border-top: 1px solid rgb(15, 55, 15); 
-    margin: 20px 0; 
+    border-top: 1px solid rgb(15, 55, 15);
+    margin: 20px 0;
 }
 
 .form-field {
@@ -45,7 +47,7 @@ body {
 }
 
 .submit-button {
-    background-color:rgb(15, 55, 15);
+    background-color: rgb(15, 55, 15);
     color: white;
     padding: 15px 20px;
     border: none;
@@ -56,5 +58,5 @@ body {
 }
 
 .submit-button:hover {
-    background-color:rgb(15, 55, 15);
+    background-color: rgb(15, 55, 15);
 }

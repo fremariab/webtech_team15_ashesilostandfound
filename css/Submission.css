@@ -1,19 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: rgb(15, 55, 15);
+    font-family: Poppins, sans-serif;
+    background-color: #1C402E;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-   
+
 }
 
 .container {
     width: 400px;
     margin: 20px auto;
     padding: 20px;
-    background-color: rgb(245, 228, 213);
+    background-color: #FFF8ED;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -51,7 +53,7 @@ textarea {
 }
 
 button {
-    background-color: rgb(15, 55, 15);
+    background-color: #1C402E;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -61,5 +63,5 @@ button {
 }
 
 button:hover {
-    background-color: rgb(15, 55, 15);
+    background-color: #1C402E;
 }
