@@ -15,7 +15,7 @@
             <header>Signup</header>
             <form action="../actions/signup_action.php" method="post">
                 <?php
-                if (isset($_GET['error'])) { ?>
+                if (isset($_GET['userror'])) { ?>
                     <p class="error" style="color:red"><?php echo $_GET['error'] ?></p>
                 <?php } ?>
                 <input type="text" name="fname" id="fname" pattern="[A-Za-z]{2,50}" placeholder="First Name">
@@ -48,11 +48,11 @@
                     <?php
                     foreach ($options as $option) {
                         if ($option['rid'] != 1) {
-                    ?> <option value="<?php echo $option['rid']; ?>"><?php echo $option['rname']; ?> </option>
-                    <?php
+                            echo " <option value='" . $option['rid'] . "'>" . $option['rname'] . "</option>";
                         }
                     }
                     ?>
+
                 </select>
 
                 <input type="text" name="phone_number" id="phone_number" pattern="^[+\d\s]+$" placeholder="Phone Number">
