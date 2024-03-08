@@ -10,14 +10,12 @@ body {
     width: 100%;
 }
 
-/*The whole template*/
 .overall {
     display: flex;
     background: #1C402E;
 }
 
 
-/*The right side of the template*/
 .items {
     position: relative;
     flex: 2;

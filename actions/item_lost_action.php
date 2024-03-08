@@ -6,9 +6,29 @@ include "../settings/connection.php";
 if (isset($_POST['submit_button'])) {
     $itemName = mysqli_real_escape_string($conn, $_POST['itemName']);
     $locationFound = mysqli_real_escape_string($conn, $_POST['locationFound']);
-    $time = mysqli_real_escape_string($conn, $_POST['time']);
     $itemDescription = mysqli_real_escape_string($conn, $_POST['itemDescription']);
     $userrole = $_SESSION['user_role'];
+    $time = $_POST['time'];
+    $date = $_POST['date'];
+
+    if (isset($date)) {
+        $date = date('Y-m-d', strtotime($date));
+        if ($date === '1970-01-01' || strtotime($_POST['date']) === false) {
+            header("Location: ../login/register_view.php?error=Invalid date");
+            exit();
+        }
+    } else {
+        header("Location: ../login/register_view.php?error=Date not set");
+        exit();
+    }
+
+    if (isset($time)) {
+        $time = date('H:i:s', strtotime($time));
+    } else {
+        header("Location: ../login/register_view.php?error=Invalid time");
+        exit();
+    }
+
 
     if (empty($itemName)) {
         header("Location: ../view/itemlostpage.php?error=Item Name is required");
@@ -23,6 +43,8 @@ if (isset($_POST['submit_button'])) {
         header("Location: ../view/itemlostpage.php?error=Item Description is required");
         exit();
     }
+
+
 
     $target_dir = "../uploads/";
     $target_file = $target_dir . basename($_FILES["photo"]["name"]);
@@ -44,15 +66,14 @@ if (isset($_POST['submit_button'])) {
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
-                $sql_img = "Select * from image";
+                $sql_img = "SELECT * from image ORDER BY image_id DESC";
                 $result_img = mysqli_query($conn, $sql_img);
                 $row = mysqli_fetch_assoc($result_img);
 
                 if ($row) {
                     $image_id = $row['image_id'];
                 }
-
-                $sql2 = "Select * from Lost_Items where item_name='$itemName' and time='$time' and location='$locationFound'";
+                $sql2 = "SELECT * from Lost_Items where item_name='$itemName' and time='$time' and location='$locationFound'";
                 $result2 = mysqli_query($conn, $sql2);
                 $count_items = mysqli_num_rows($result2);
 
