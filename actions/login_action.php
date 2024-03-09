@@ -22,7 +22,7 @@ if (isset($_POST['submit_button'])) {
         exit();
     }
 
-    $sql = "SELECT * FROM User where email='$user_mail'";
+    $sql = "SELECT * FROM user where email='$user_mail'";
 
     $result = mysqli_query($conn, $sql);
 

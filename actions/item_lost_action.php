@@ -73,12 +73,12 @@ if (isset($_POST['submit_button'])) {
                 if ($row) {
                     $image_id = $row['image_id'];
                 }
-                $sql2 = "SELECT * from Lost_Items where item_name='$itemName' and time='$time' and location='$locationFound'";
+                $sql2 = "SELECT * from lost_items where item_name='$itemName' and time='$time' and location='$locationFound'";
                 $result2 = mysqli_query($conn, $sql2);
                 $count_items = mysqli_num_rows($result2);
 
                 if ($count_items == 0) {
-                    $sql3 = "INSERT INTO Lost_Items(rid,sid,image_id,item_name,time,location,description) VALUES('$userrole',1,'$image_id' ,'$itemName','$time','$locationFound','$itemDescription')";
+                    $sql3 = "INSERT INTO lost_items(rid,sid,image_id,item_name,time,location,description) VALUES('$userrole',1,'$image_id' ,'$itemName','$time','$locationFound','$itemDescription')";
                     $result3 = mysqli_query($conn, $sql3);
 
                     if ($result3) {

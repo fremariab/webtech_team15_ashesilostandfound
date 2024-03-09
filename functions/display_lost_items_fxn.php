@@ -1,7 +1,7 @@
 <?php
 include "../settings/connection.php";
 
-$sql = "SELECT * FROM Lost_Items as lo, image as i where lo.image_id=i.image_id";
+$sql = "SELECT * FROM lost_items as lo, image as i where lo.image_id=i.image_id";
 $result = mysqli_query($conn, $sql);
 
 

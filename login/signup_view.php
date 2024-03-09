@@ -29,11 +29,11 @@
 
                     <div class="radio">
                         <div class="radio-container">
-                            <input type="radio" name="gender" id="gender-male" value="male">
+                            <input type="radio" name="gender" id="gender-male" value="1">
                             <label for="gender-male">Male</label>
                         </div>
                         <div class="radio-container">
-                            <input type="radio" name="gender" id="gender-female" value="female">
+                            <input type="radio" name="gender" id="gender-female" value="2">
                             <label for="gender-female">Female</label>
                         </div>
                     </div>
