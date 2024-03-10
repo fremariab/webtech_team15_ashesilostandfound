@@ -107,9 +107,9 @@
         <!-- NAVBAR -->
         <nav>
 
-            <form action="#">
+            <form action="../actions/main_search.php" method="GET">
                 <div class="form-input">
-                    <input type="search" placeholder="Search...">
+                    <input type="search" name="keyword" placeholder="Search...">
                     <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
                 </div>
             </form>
@@ -230,6 +230,7 @@
     <script src="../js/user_dash_script.js"></script>
 
     <script>
+        
         
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "../actions/user_dash_stats.php", true);
