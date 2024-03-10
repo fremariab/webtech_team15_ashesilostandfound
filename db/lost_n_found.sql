@@ -93,6 +93,17 @@ CREATE TABLE `lost_items` (
   `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE `Claimed_Items` (
+  `claim_id` int(11) NOT NULL AUTO_INCREMENT,
+  `found_item_id` int(11) NOT NULL,
+  `rid` int(11) NOT NULL, 
+  `sid` int(11) NOT NULL,
+  PRIMARY KEY (`claim_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+
+
 -- --------------------------------------------------------
 
 --
@@ -286,7 +297,40 @@ ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`rid`) REFERENCES `role` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
+
+
+ALTER TABLE `Claimed_Items`
+  ADD CONSTRAINT `fk_claimed_found_item`
+  FOREIGN KEY (`found_item_id`)
+  REFERENCES `Found_Items` (`itemid`)
+  ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Lost_Items` ADD COLUMN `interaction_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `Found_Items` ADD COLUMN `interaction_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `Claimed_Items` ADD COLUMN `interaction_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE `Lost_Items`
+    ADD COLUMN `uid` int(11) NOT NULL,
+    ADD CONSTRAINT `fk_lost_user` FOREIGN KEY (`uid`) REFERENCES `User` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Found_Items`
+    ADD COLUMN `uid` int(11) NOT NULL,
+    ADD CONSTRAINT `fk_found_user` FOREIGN KEY (`uid`) REFERENCES `User` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `Claimed_Items`
+    ADD COLUMN `uid` int(11) NOT NULL,
+    ADD CONSTRAINT `fk_claimed_user` FOREIGN KEY (`uid`) REFERENCES `User` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+<<<<<<< HEAD
  
+=======
+
+
+-- Added a claimed items table to db. Only found items can be claimed so relationship established
+-- Added time to lost, found and claimed items tables
+>>>>>>> origin/backend
