@@ -2,7 +2,7 @@
 
 $SERVER = "localhost";
 $USERNAME = "root";
-$PSSWRD = "";
+$PSSWRD = "cs341webtech";
 $DATABASE = "lost_n_found";
 
 $conn = new mysqli($SERVER, $USERNAME, $PSSWRD, $DATABASE);

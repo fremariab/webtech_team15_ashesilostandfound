@@ -22,20 +22,18 @@ include "../settings/core.php";
             <div class="form-field">
                 <label style="color : green " for="itemName">Item Name</label>
                 <input type="text" id="itemName" name="itemName">
-            </div>
-            <div class="form-field">
+
                 <label style="color : green " for="locationFound">Location Lost</label>
                 <input type="text" id="locationFound" name="locationFound">
-            </div>
-            <div class="form-field">
-                <label style="color : green; display: block" for="dateFound">Date Lost</label>
-                <input type="date" id="date" name="time" placeholder="mm/dd/yyyy" style="width: 150px;">
-            </div>
-            <div class="form-field">
-                <label style="color : green " for="itemDescription">Item Description</label>
+                <div>
+                    <label style="color: green; display: block;" for="dateFound">Date & Time Lost</label>
+                    <input type="date" id="date" name="date" style="width: 150px; display: inline-block;">
+                    <input type="time" id="time" name="time" style="width: 100px; display: inline-block;">
+                </div>
+
+                <label style="color:green " for="itemDescription">Item Description</label>
                 <textarea id="itemDescription" name="itemDescription" rows="4"></textarea>
-            </div>
-            <div class="form-field">
+
                 <label style="color: green;" for="photo">Upload Photo</label>
                 <input type="file" id="photo" name="photo">
             </div>
