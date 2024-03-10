@@ -298,6 +298,9 @@ ALTER TABLE `Claimed_Items`
     ADD COLUMN `uid` int(11) NOT NULL,
     ADD CONSTRAINT `fk_claimed_user` FOREIGN KEY (`uid`) REFERENCES `User` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+ALTER TABLE Lost_Items ADD COLUMN category ENUM('Electronics', 'Books', 'Clothing', 'Others') NOT NULL;
+ALTER TABLE Found_Items ADD COLUMN category ENUM('Electronics', 'Books', 'Clothing', 'Others') NOT NULL;
+
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
