@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.1.1deb5ubuntu1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 07, 2024 at 06:16 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost:3306
+-- Generation Time: Mar 10, 2024 at 12:05 PM
+-- Server version: 8.0.36-0ubuntu0.22.04.1
+-- PHP Version: 8.1.2-1ubuntu2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,14 +28,14 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `found_items` (
-  `itemid` int(11) NOT NULL,
-  `rid` int(11) NOT NULL,
-  `sid` int(11) NOT NULL,
-  `image_id` int(11) NOT NULL,
-  `item_name` varchar(100) NOT NULL,
+  `itemid` int NOT NULL,
+  `rid` int NOT NULL,
+  `sid` int NOT NULL,
+  `image_id` int NOT NULL,
+  `item_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `time` time DEFAULT NULL,
-  `location` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL
+  `location` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -45,8 +45,8 @@ CREATE TABLE `found_items` (
 --
 
 CREATE TABLE `found_status` (
-  `sid` int(11) NOT NULL,
-  `sname` varchar(50) NOT NULL DEFAULT 'Found'
+  `sid` int NOT NULL,
+  `sname` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Found'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -65,23 +65,16 @@ INSERT INTO `found_status` (`sid`, `sname`) VALUES
 --
 
 CREATE TABLE `image` (
-  `image_id` int(11) NOT NULL,
-  `file_name` varchar(255) NOT NULL,
-  `file_size` int(11) NOT NULL,
-  `file_type` varchar(50) NOT NULL,
-  `upload_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `image_id` int NOT NULL,
+  `file_name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `file_size` int NOT NULL,
+  `file_type` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `upload_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `image`
 --
-
-INSERT INTO `image` (`image_id`, `file_name`, `file_size`, `file_type`, `upload_date`) VALUES
-(4, '../uploads/images.jpg', 3734, 'jpg', '2024-02-23 06:03:23'),
-(5, '../uploads/glasses_image.jpg', 5233, 'jpg', '2024-02-23 06:04:02'),
-(6, '../uploads/iphone.jpg', 5639, 'jpg', '2024-02-23 11:47:48'),
-(7, '../uploads/mouse.jpg', 95304, 'jpg', '2024-03-07 16:11:06');
-
 -- --------------------------------------------------------
 
 --
@@ -89,25 +82,16 @@ INSERT INTO `image` (`image_id`, `file_name`, `file_size`, `file_type`, `upload_
 --
 
 CREATE TABLE `lost_items` (
-  `itemid` int(11) NOT NULL,
-  `rid` int(11) NOT NULL,
-  `sid` int(11) NOT NULL,
-  `image_id` int(11) NOT NULL,
-  `item_name` varchar(100) NOT NULL,
+  `itemid` int NOT NULL,
+  `rid` int NOT NULL,
+  `sid` int NOT NULL,
+  `image_id` int NOT NULL,
+  `item_name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
   `time` time DEFAULT NULL,
-  `location` varchar(255) NOT NULL,
-  `description` text DEFAULT NULL
+  `location` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci,
+  `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `lost_items`
---
-
-INSERT INTO `lost_items` (`itemid`, `rid`, `sid`, `image_id`, `item_name`, `time`, `location`, `description`) VALUES
-(4, 2, 1, 4, 'Bag', '00:20:24', 'NM207A', 'Brown Gucci Bag'),
-(5, 2, 1, 4, 'Glasses', '00:20:24', 'RB100', 'Black Chanel Glasses'),
-(6, 2, 1, 4, 'Phone', '00:20:24', 'RB100', 'Pink Iphone'),
-(7, 2, 1, 4, 'Mouse', '00:20:24', 'Apt 216', 'black');
 
 -- --------------------------------------------------------
 
@@ -116,8 +100,8 @@ INSERT INTO `lost_items` (`itemid`, `rid`, `sid`, `image_id`, `item_name`, `time
 --
 
 CREATE TABLE `lost_status` (
-  `sid` int(11) NOT NULL,
-  `sname` varchar(50) NOT NULL DEFAULT 'Lost'
+  `sid` int NOT NULL,
+  `sname` varchar(50) COLLATE utf8mb4_general_ci NOT NULL DEFAULT 'Lost'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -136,8 +120,8 @@ INSERT INTO `lost_status` (`sid`, `sname`) VALUES
 --
 
 CREATE TABLE `role` (
-  `rid` int(11) NOT NULL,
-  `rname` varchar(50) NOT NULL
+  `rid` int NOT NULL,
+  `rname` varchar(50) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -145,11 +129,11 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`rid`, `rname`) VALUES
-(1, 'admin'),
-(2, 'student'),
-(3, 'teaching_staff'),
-(4, 'non_teaching_staff'),
-(5, 'visitor');
+(1, 'Admin'),
+(2, 'Student'),
+(3, 'Teaching Staff'),
+(4, 'Non Teaching Staff'),
+(5, 'Visitor');
 
 -- --------------------------------------------------------
 
@@ -158,14 +142,14 @@ INSERT INTO `role` (`rid`, `rname`) VALUES
 --
 
 CREATE TABLE `user` (
-  `uid` int(11) NOT NULL,
-  `rid` int(11) NOT NULL,
-  `fname` varchar(50) NOT NULL,
-  `lname` varchar(50) NOT NULL,
-  `gender` int(11) NOT NULL,
-  `tel` varchar(20) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `passwd` varchar(255) NOT NULL
+  `uid` int NOT NULL,
+  `rid` int NOT NULL,
+  `fname` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `lname` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `gender` int NOT NULL,
+  `tel` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `passwd` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -173,12 +157,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`uid`, `rid`, `fname`, `lname`, `gender`, `tel`, `email`, `passwd`) VALUES
-(1, 1, 'admin', '', 1, '1234567890', 'a@a.com', 'admin123'),
-(2, 2, 'FredaMarie', 'Beecham', 0, '0555300887', 'fb@g.com', '$2y$10$w5AYvN5qn23N8yDGQWt87uTiBE2cnEcZojyr9PaoRehNBcdhXHXTy'),
-(3, 2, 'Jay', 'Doe', 0, '1234567890', 'jb@g.com', '$2y$10$CwGIrwGYKIAi5hXE8/TCr.uev0ABoG2BY7G2OaQntSOoFiVrSqox2'),
-(4, 2, 'Jackie', 'Chan', 0, '1234567890', 'jc@hotmail.com', '$2y$10$4rzD.6Uk5jVY9y9vo8n9BORkcv/e7tcN562qY8FHPOHnEUFpDJsEK'),
-(5, 2, 'Jane', 'Doe', 0, '1234567890', 'jd@gmail.com', '$2y$10$X9fIVVcXC71afP0m9YRWCOxyBg9xOUu7zin0q4vDUiReOxuY9X4rq'),
-(6, 2, 'Jeanette', 'Madeson', 0, '12321858991', 'a@admin.com', '$2y$10$rcBGRJ3YD8Bwxs3GEYZI7uaYxw8kvpibu/7a96bp4AEkijbhb9i2i');
+(7, 2, 'Jean', 'Mull', 2, '1234567890', 'jmull@ashesi.edu.gh', '$2y$10$j1Z14s/IZgkzPOhCia1EEuNiBcisHdsQ8MFaXn5GRdCnW.dNsA1qS');
 
 --
 -- Indexes for dumped tables
@@ -210,11 +189,10 @@ ALTER TABLE `image`
 --
 ALTER TABLE `lost_items`
   ADD PRIMARY KEY (`itemid`),
+  ADD UNIQUE KEY `unique_item` (`item_name`,`time`,`location`),
   ADD KEY `rid` (`rid`),
   ADD KEY `sid` (`sid`),
-  ADD KEY `lost_items_ibfk_3` (`image_id`),
-  ADD  UNIQUE KEY `unique_item` (`item_name`, `time`, `location`);
-
+  ADD KEY `lost_items_ibfk_3` (`image_id`);
 
 --
 -- Indexes for table `lost_status`
@@ -243,43 +221,43 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `found_items`
 --
 ALTER TABLE `found_items`
-  MODIFY `itemid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `itemid` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `found_status`
 --
 ALTER TABLE `found_status`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `sid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `image`
 --
 ALTER TABLE `image`
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `image_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `lost_items`
 --
 ALTER TABLE `lost_items`
-  MODIFY `itemid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `itemid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `lost_status`
 --
 ALTER TABLE `lost_status`
-  MODIFY `sid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `sid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `rid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `uid` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -290,16 +268,16 @@ ALTER TABLE `user`
 --
 ALTER TABLE `found_items`
   ADD CONSTRAINT `found_items_ibfk_1` FOREIGN KEY (`rid`) REFERENCES `role` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `found_items_ibfk_2` FOREIGN KEY (`sid`) REFERENCES `found_status` (`sid`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `found_items_ibfk_3` FOREIGN KEY (`image_id`) REFERENCES `image` (`image_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `found_items_ibfk_2` FOREIGN KEY (`sid`) REFERENCES `found_status` (`sid`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `found_items_ibfk_3` FOREIGN KEY (`image_id`) REFERENCES `image` (`image_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `lost_items`
 --
 ALTER TABLE `lost_items`
   ADD CONSTRAINT `lost_items_ibfk_1` FOREIGN KEY (`rid`) REFERENCES `role` (`rid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `lost_items_ibfk_2` FOREIGN KEY (`sid`) REFERENCES `lost_status` (`sid`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `lost_items_ibfk_3` FOREIGN KEY (`image_id`) REFERENCES `image` (`image_id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  ADD CONSTRAINT `lost_items_ibfk_2` FOREIGN KEY (`sid`) REFERENCES `lost_status` (`sid`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `lost_items_ibfk_3` FOREIGN KEY (`image_id`) REFERENCES `image` (`image_id`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`
@@ -311,3 +289,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+ 
