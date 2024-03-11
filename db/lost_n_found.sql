@@ -93,7 +93,7 @@ CREATE TABLE `lost_items` (
   `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `Claimed_Items` (
+CREATE TABLE `claimed_items` (
   `claim_id` int(11) NOT NULL AUTO_INCREMENT,
   `found_item_id` int(11) NOT NULL,
   `rid` int(11) NOT NULL, 
@@ -299,30 +299,30 @@ COMMIT;
 
 
 
-ALTER TABLE `Claimed_Items`
+ALTER TABLE `claimed_items`
   ADD CONSTRAINT `fk_claimed_found_item`
   FOREIGN KEY (`found_item_id`)
-  REFERENCES `Found_Items` (`itemid`)
+  REFERENCES `found_items` (`itemid`)
   ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `Lost_Items` ADD COLUMN `interaction_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE `Found_Items` ADD COLUMN `interaction_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE `Claimed_Items` ADD COLUMN `interaction_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `lost_items` ADD COLUMN `interaction_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `found_items` ADD COLUMN `interaction_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `claimed_items` ADD COLUMN `interaction_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
-ALTER TABLE `Lost_Items`
+ALTER TABLE `lost_items`
     ADD COLUMN `uid` int(11) NOT NULL,
-    ADD CONSTRAINT `fk_lost_user` FOREIGN KEY (`uid`) REFERENCES `User` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `fk_lost_user` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `Found_Items`
+ALTER TABLE `found_items`
     ADD COLUMN `uid` int(11) NOT NULL,
-    ADD CONSTRAINT `fk_found_user` FOREIGN KEY (`uid`) REFERENCES `User` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `fk_found_user` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `Claimed_Items`
+ALTER TABLE `claimed_items`
     ADD COLUMN `uid` int(11) NOT NULL,
-    ADD CONSTRAINT `fk_claimed_user` FOREIGN KEY (`uid`) REFERENCES `User` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
+    ADD CONSTRAINT `fk_claimed_user` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE Lost_Items ADD COLUMN category ENUM('Electronics', 'Books', 'Clothing', 'Others') NOT NULL;
-ALTER TABLE Found_Items ADD COLUMN category ENUM('Electronics', 'Books', 'Clothing', 'Others') NOT NULL;
+ALTER TABLE lost_items ADD COLUMN category ENUM('Electronics', 'Books', 'Clothing', 'Others') NOT NULL;
+ALTER TABLE found_items ADD COLUMN category ENUM('Electronics', 'Books', 'Clothing', 'Others') NOT NULL;
 
 
 

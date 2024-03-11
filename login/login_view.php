@@ -11,6 +11,9 @@
 </head>
 
 <body>
+    <div style="text-align: center;">
+        <img src="../images/logo.png" alt="site logo" height="150px" style="display: inline-block;">
+    </div>
     <div class="container">
         <input type="checkbox" id="check">
         <div class="login form">
