@@ -134,23 +134,9 @@
             <h1>Search Results</h1>
             <div class="search-results">
                 <?php
-                include "../settings/connection.php";
-
-                // Pagination variables
-                $page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
-                $prev_page = $page - 1;
-                $next_page = $page + 1;
-                $records_per_page = 2;
-
                 if (isset($_GET["results"])) {
                     $searchResults = json_decode(urldecode($_GET["results"]), true);
                     if ($searchResults && !empty($searchResults)) {
-                        $total_results = count($searchResults);
-                        $num_pages = ceil($total_results / $records_per_page);
-                        $start = ($page - 1) * $records_per_page;
-                        $end = $start + $records_per_page;
-                        $searchResults = array_slice($searchResults, $start, $records_per_page);
-
                         foreach ($searchResults as $result) {
                             echo "<div class='item'>";
                             echo "<h3>Item Name: " . $result["item_name"] . "</h3>";
@@ -158,16 +144,6 @@
                             echo "<p>Description: " . $result["description"] . "</p>";
                             echo "</div>";
                         }
-
-                        
-                        echo "<div class='pages'>";
-                        if ($page > 1) {
-                            echo "<a href='found_item_search_result.php?page=$prev_page'><button id='prev-btn'>Previous</button></a>";
-                        }
-                        if ($page < $num_pages) {
-                            echo "<a href='found_item_search_result.php?page=$next_page'><button id='next-btn'>Next</button></a>";
-                        }
-                        echo "</div>";
                     } else {
                         echo "<p>No matching items found.</p>";
                     }

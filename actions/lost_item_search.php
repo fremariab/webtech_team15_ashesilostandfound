@@ -22,15 +22,15 @@ if (isset($_GET["keyword"])) {
         mysqli_close($conn);
 
         
-        header("Location: ../view/found_item_search_result.php?results=" . urlencode(json_encode($searchResults)));
+        header("Location: ../view/lost_item_search_result.php?results=" . urlencode(json_encode($searchResults)));
         exit();
     } else {
     
-        header("Location: ../view/found_item_search_result.php?results=none");
+        header("Location: ../view/lost_item_search_result.php?results=none");
         exit();
     }
 } else {
-    header("Location: ../view/found_item_search_result.php?results=none");
+    header("Location: ../view/lost_item_search_result.php?results=none");
     exit();
 }
 ?>

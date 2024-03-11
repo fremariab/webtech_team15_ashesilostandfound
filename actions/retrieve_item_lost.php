@@ -55,14 +55,14 @@ function getLostItems($connection, $limit, $offset, $sortBy, $itemType, $locatio
     }
 
 
-    $foundItems = array();
+    $lostItems = array();
     while ($row = $result->fetch_assoc()) {
-        $foundItems[] = $row;
+        $lostItems[] = $row;
     }
 
     $result->free();
 
-    return $foundItems;
+    return $lostItems;
 }
 
 

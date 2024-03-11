@@ -59,7 +59,7 @@
 #sidebarToggle {
     position: fixed;
     top: 10px;
-    left: 10px;
+    left: 220px;
     z-index: 1001; 
 }
 
@@ -243,18 +243,19 @@
             content.classList.remove("shifted-content");
             sidebar.classList.remove("shifted-sidebar");
             sidebarToggle.classList.remove("shifted-sidebar");
+            sidebarToggle.style.left = "10px";
         } else {
             sidebar.style.left = "0px";
            content.classList.add("shifted-content");
             sidebar.classList.add("shifted-sidebar");
             sidebarToggle.classList.add("shifted-sidebar");
+            sidebarToggle.style.left = "220px";
         }
     }
 
     
     sidebarToggle.addEventListener("click", toggleSidebar);
 });
-
 
 
         function toggleCustomLocationInput() {
@@ -290,9 +291,12 @@
 
             var xhr = new XMLHttpRequest();
             xhr.open("GET", "../actions/retrieve_item_lost.php?" + new URLSearchParams(formData).toString(), true);
+            console.log('Ready state:', xhr.readyState);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log("girl");
                     console.log(xhr.responseText);
+                    
                     var itemsContainer = document.querySelector(".lost");
                     itemsContainer.innerHTML = "";
                     var items = JSON.parse(xhr.responseText);
@@ -315,7 +319,7 @@
             loadData(currentPage);
         });
 
-        loadData(currentPage);
+         loadData(currentPage);
     </script>
 
 </body>

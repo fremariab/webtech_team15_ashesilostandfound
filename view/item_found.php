@@ -59,7 +59,7 @@
 #sidebarToggle {
     position: fixed;
     top: 10px;
-    left: 10px;
+    left: 220px;
     z-index: 1001; 
 }
 
@@ -68,6 +68,12 @@
     margin-top: 10px;
 
 }
+
+/* #sidebar .side-menu li.active {
+    background: var(--grey);
+    position: relative;
+} */
+
 .shifted-sidebar #sidebarToggle {
     left: 220px;
 }
@@ -94,37 +100,38 @@
             <img src="../images/logo.png" height="64px" alt="">
         </a>
         <ul class="side-menu top">
-            <li class="active">
-                <a href="../view/user_dash.php">
-                    <i class='bx bxs-dashboard'></i>
-                    <span class="text">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="../view/item_found.php">
-                    <i class='bx bxs-report'></i>
-                    <span class="text">Search Found Items</span>
-                </a>
-            </li>
-            <li>
-                <a href="../view/item_lost.php">
-                    <i class='bx bxs-report'></i>
-                    <span class="text">Search Lost Items</span>
-                </a>
-            </li>
-            <li>
-                <a href="../view/Submission.php">
-                    <i class='bx bxs-report'></i>
-                    <span class="text">Report Found Item</span>
-                </a>
-            </li>
-            <li>
-                <a href="../view/ItemLostPage.php">
-                    <i class='bx bxs-report'></i>
-                    <span class="text">Report Lost Item</span>
-                </a>
-            </li>
-        </ul>
+    <li id="dashboardMenuItem" >
+        <a href="../view/user_dash.php">
+            <i class='bx bxs-dashboard'></i>
+            <span class="text">Dashboard</span>
+        </a>
+    </li>
+    <li id="searchFoundItemsMenuItem" > 
+        <a href="../view/item_found.php">
+            <i class='bx bxs-report'></i>
+            <span class="text">Search Found Items</span>
+        </a>
+    </li>
+    <li id="searchLostItemsMenuItem" >
+        <a href="../view/item_lost.php">
+            <i class='bx bxs-report'></i>
+            <span class="text">Search Lost Items</span>
+        </a>
+    </li>
+    <li id="reportFoundItemMenuItem" >
+        <a href="../view/Submission.php">
+            <i class='bx bxs-report'></i>
+            <span class="text">Report Found Item</span>
+        </a>
+    </li>
+    <li id="reportLostItemMenuItem" >
+        <a href="../view/ItemLostPage.php">
+            <i class='bx bxs-report'></i>
+            <span class="text">Report Lost Item</span>
+        </a>
+    </li>
+</ul>
+
         <ul class="side-menu">
             <li>
                 <a href="#">
@@ -177,8 +184,10 @@
                     <option value="hostels">Hostels</option>
                     <option value="other">Other</option>
                 </select>
-                <input type="text" id="custom-location" name="custom-location" placeholder="Enter custom location" style="display: none;">
-                <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                <div class="form-input" id="custom-location-input" style="display: none;">
+    <input type="text" id="custom-location" name="custom-location" placeholder="Enter custom location">
+    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+</div>
 
                 <!-- Sorting Options -->
                 <label for="sort-by">Sort By:</label>
@@ -228,7 +237,15 @@
     </div>
 
     <script>
-
+function toggleCustomLocationInput() {
+    var locationSelect = document.getElementById("location-select");
+    var customLocationInput = document.getElementById("custom-location-input");
+    if (locationSelect.value === "other") {
+        customLocationInput.style.display = "block";
+    } else {
+        customLocationInput.style.display = "none";
+    }
+}
     document.addEventListener("DOMContentLoaded", function() {
     const sidebar = document.getElementById("sidebar");
     const sidebarToggle = document.getElementById("sidebarToggle");
@@ -246,11 +263,13 @@
             content.classList.remove("shifted-content");
             sidebar.classList.remove("shifted-sidebar");
             sidebarToggle.classList.remove("shifted-sidebar");
+            sidebarToggle.style.left = "10px";
         } else {
             sidebar.style.left = "0px";
            content.classList.add("shifted-content");
             sidebar.classList.add("shifted-sidebar");
             sidebarToggle.classList.add("shifted-sidebar");
+            sidebarToggle.style.left = "220px";
         }
     }
 
@@ -258,19 +277,59 @@
     sidebarToggle.addEventListener("click", toggleSidebar);
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+   
+    const menuItems = document.querySelectorAll(".side-menu li");
 
-
-        function toggleCustomLocationInput() {
-            var locationSelect = document.getElementById("location-select");
-            var customLocationInput = document.getElementById("custom-location");
-
-            if (locationSelect.value === "other") {
-                customLocationInput.style.display = "inline-block";
-                customLocationInput.value = "";
+    
+    function setActiveMenuItemFromURL() {
+        const currentURL = window.location.href;
+        const relativePath = currentURL.split("/").pop(); 
+        console.log("Relative Path:", relativePath);
+        menuItems.forEach(menuItem => {
+            const link = menuItem.querySelector("a");
+            const menuItemURL = link.getAttribute("href");
+            console.log("Menu Item URL:", menuItemURL);
+            if (menuItemURL && menuItemURL.includes(relativePath)) {
+                menuItem.classList.add("active");
             } else {
-                customLocationInput.style.display = "none";
+                menuItem.classList.remove("active");
             }
-        }
+        });
+    }
+
+    
+    setActiveMenuItemFromURL();
+
+    
+    menuItems.forEach(menuItem => {
+        menuItem.addEventListener("click", function(event) {
+            console.log("Clicked menu item:", menuItem);
+            
+            menuItems.forEach(item => {
+                item.classList.remove("active");
+            });
+            
+            menuItem.classList.add("active");
+        });
+    });
+});
+
+
+
+
+
+        // function toggleCustomLocationInput() {
+        //     var locationSelect = document.getElementById("location-select");
+        //     var customLocationInput = document.getElementById("custom-location");
+
+        //     if (locationSelect.value === "other") {
+        //         customLocationInput.style.display = "inline-block";
+        //         customLocationInput.value = "";
+        //     } else {
+        //         customLocationInput.style.display = "none";
+        //     }
+        // }
 
         var currentPage = 1;
 
