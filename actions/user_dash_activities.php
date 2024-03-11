@@ -13,20 +13,20 @@ $query_activities = "
    SELECT CONCAT(u.fname, ' ', u.lname) AS person_name, 
        li.interaction_time AS interaction_date, 
        'Reported a lost item' AS activity
-FROM Lost_Items li
-JOIN User u ON li.uid = u.uid
+FROM lost_items li
+JOIN user u ON li.uid = u.uid
 UNION ALL
 SELECT CONCAT(u.fname, ' ', u.lname) AS person_name, 
        fi.interaction_time AS interaction_date, 
        'Found a lost item' AS activity
-FROM Found_Items fi
-JOIN User u ON fi.uid = u.uid
+FROM found_items fi
+JOIN user u ON fi.uid = u.uid
 UNION ALL
 SELECT CONCAT(u.fname, ' ', u.lname) AS person_name, 
        ci.interaction_time AS interaction_date, 
        'Claimed a found item' AS activity
-FROM Claimed_Items ci
-JOIN User u ON ci.uid = u.uid
+FROM claimed_items ci
+JOIN user u ON ci.uid = u.uid
 ORDER BY interaction_date DESC
 LIMIT $limit OFFSET $offset;
 ";

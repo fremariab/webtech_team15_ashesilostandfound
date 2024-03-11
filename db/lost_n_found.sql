@@ -329,11 +329,7 @@ ALTER TABLE Found_Items ADD COLUMN category ENUM('Electronics', 'Books', 'Clothi
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-<<<<<<< HEAD
- 
-=======
 
 
 -- Added a claimed items table to db. Only found items can be claimed so relationship established
 -- Added time to lost, found and claimed items tables
->>>>>>> origin/backend
