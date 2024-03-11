@@ -7,10 +7,7 @@ if (isset($_GET["keyword"])) {
     error_log("Keyword received: " . $keyword); 
     echo "Keyword received: " . $keyword;
 
-    $query = "SELECT * FROM Lost_Items 
-              WHERE item_name LIKE '%$keyword%' OR location LIKE '%$keyword%' OR description LIKE '%$keyword%'
-              UNION
-              SELECT * FROM Found_Items 
+    $query = "SELECT * FROM Found_Items 
               WHERE item_name LIKE '%$keyword%' OR location LIKE '%$keyword%' OR description LIKE '%$keyword%'";
 
     $result = mysqli_query($conn, $query);
@@ -23,19 +20,17 @@ if (isset($_GET["keyword"])) {
         }
 
         mysqli_close($conn);
-        echo "hmm";
+
         
-        header("Location: ../view/search_results.php?results=" . urlencode(json_encode($searchResults)));
+        header("Location: ../view/found_item_search_result.php?results=" . urlencode(json_encode($searchResults)));
         exit();
     } else {
-   
-        // header("Location: ../view/search_result_page.php?results=none");
-
+    
+        header("Location: ../view/found_item_search_result.php?results=none");
         exit();
     }
 } else {
-
-    // header("Location: ../view/search_result_page.php?results=none");
+    header("Location: ../view/found_item_search_result.php?results=none");
     exit();
 }
 ?>

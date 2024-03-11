@@ -4,8 +4,8 @@ ini_set('display_errors', 1);
 session_start();
 include "../settings/connection.php";
 
-function getFoundItems($connection, $limit, $offset, $sortBy, $itemType, $location) {
-    $sql = "SELECT * FROM Found_Items WHERE 1=1";
+function getLostItems($connection, $limit, $offset, $sortBy, $itemType, $location) {
+    $sql = "SELECT * FROM Lost_Items WHERE 1=1";
 
     
     if (!empty($itemType)) {
@@ -78,8 +78,8 @@ $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($current_page - 1) * $limit;
 
 // Retrieve found items with sorting, filtering, and pagination
-$foundItems = getFoundItems($conn, $limit, $offset, $sortBy, $itemType, $location);
+$lostItems = getLostItems($conn, $limit, $offset, $sortBy, $itemType, $location);
 
 // Encode the found items as JSON and echo the result
-echo json_encode($foundItems);
+echo json_encode($lostItems);
 ?>

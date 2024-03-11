@@ -67,7 +67,7 @@
                 </a>
             </li>
             <li>
-                <a href="../view/items_details.php">
+                <a href="../view/item_lost.php">
                     <i class='bx bxs-report'></i>
                     <span class="text">Search Lost Items</span>
                 </a>

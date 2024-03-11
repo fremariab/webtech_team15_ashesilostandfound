@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="../css/item_details.css">
     <link rel="stylesheet" href="../css/user_dash_style.css">
-    <title>Found Items</title>
+    <title>Lost Items</title>
 </head>
 <style>
     /* Previous and Next Buttons */
@@ -143,12 +143,9 @@
         </div>
 
         <div class="items shifted-content">
-            <h2>Items Found</h2>
+            <h2>Items Lost</h2>
 
-            
-
-
-            <form action="../actions/found_item_search.php" method="GET">
+            <form action="../actions/lost_item_search.php" method="GET">
                 <div class="form-input">
                 <input type="search" name="keyword" placeholder="Search" style="width: calc(10% - 10px);float: right;">
                 <button type="submit" class="search-btn" ><i class='bx bx-search'></i></button>
@@ -196,11 +193,11 @@
 
                 <div class="lost">
                     <?php
-                    include "../actions/retrieve_item_found.php";
-                    $foundItems = getFoundItems($conn, $limit, $offset, $sortBy, $itemType, $location);
+                    include "../actions/retrieve_item_lost.php";
+                    $lostItems = getLostItems($conn, $limit, $offset, $sortBy, $itemType, $location);
 
-                    if (!empty($foundItems)) {
-                        foreach ($foundItems as $item) {
+                    if (!empty($lostItems)) {
+                        foreach ($lostItems as $item) {
                     ?>
                             <div class="item">
                                 <img src="<?php echo $item['image_id']; ?>" alt="" class="image">
@@ -292,7 +289,7 @@
             formData.append('page', page);
 
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "../actions/retrieve_item_found.php?" + new URLSearchParams(formData).toString(), true);
+            xhr.open("GET", "../actions/retrieve_item_lost.php?" + new URLSearchParams(formData).toString(), true);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     console.log(xhr.responseText);
