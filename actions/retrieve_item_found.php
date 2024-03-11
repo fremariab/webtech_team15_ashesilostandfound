@@ -13,7 +13,7 @@ function getFoundItems($connection) {
     $offset = ($current_page - 1) * $limit;
 
     
-    $sql = "SELECT * FROM Found_Items LIMIT $limit OFFSET $offset";
+    $sql = "SELECT * FROM found_items LIMIT $limit OFFSET $offset";
     $result = $connection->query($sql);
 
     if ($result === false) {
