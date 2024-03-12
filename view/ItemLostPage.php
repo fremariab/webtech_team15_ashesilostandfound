@@ -33,7 +33,16 @@ include "../settings/core.php";
 
                 <label style="color:green " for="itemDescription">Item Description</label>
                 <textarea id="itemDescription" name="itemDescription" rows="4"></textarea>
-
+                <label style="color: green;" for="category">Category</label>
+                <br>
+                <select id="category" name="category" required>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Books">Books</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Others">Others</option>
+                </select>
+                <br>
+                <br>
                 <label style="color: green;" for="photo">Upload Photo</label>
                 <input type="file" id="photo" name="photo">
             </div>
