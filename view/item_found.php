@@ -186,7 +186,6 @@
                 </select>
                 <div class="form-input" id="custom-location-input" style="display: none;">
     <input type="text" id="custom-location" name="custom-location" placeholder="Enter custom location">
-    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
 </div>
 
                 <!-- Sorting Options -->

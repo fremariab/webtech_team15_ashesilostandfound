@@ -17,11 +17,13 @@ function getFoundItems($connection, $limit, $offset, $sortBy, $itemType, $locati
         if ($location === 'other') { 
             if (!empty($_GET['custom-location'])) {
                 $customLocation = $connection->real_escape_string($_GET['custom-location']);
-                $sql .= " OR location LIKE '%$customLocation%'";
-                
+                // echo "Custom Location: " . $customLocation;
+                $sql .= " AND location LIKE '%$customLocation%'";
+                // echo "sql " . $sql;
             }
         } else {
-            $sql .= " OR location = '$location'";
+            $sql .= " AND location = '$location'";
+            // echo "sql " . $sql;
         }
     }
 
