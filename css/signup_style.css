@@ -19,17 +19,25 @@ body {
     height: 185vh;
 }
 
+.logo {
+    position: absolute;
+    top: 50%;
+    right: 75%;
+    transform: translate(50%, -50%);
+}
+
 .container {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    right: 50%;
+    transform: translate(100%, -50%);
     max-width: 430px;
     width: 100%;
     background: #fff;
     border-radius: 7px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
 }
+
 
 .container .form {
     padding: 2rem;

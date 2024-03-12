@@ -28,7 +28,7 @@ include "../settings/core.php";
                 <div>
                     <label style="color: green; display: block;" for="dateFound">Date & Time Lost</label>
                     <input type="date" id="date" name="date" style="width: 150px; display: inline-block;">
-                    <input type="time" id="time" name="time" style="width: 100px; display: inline-block;">
+                    <input type="time" id="time" name="time" style="width: 150px; display: inline-block;">
                 </div>
 
                 <label style="color:green " for="itemDescription">Item Description</label>

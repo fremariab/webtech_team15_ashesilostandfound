@@ -1,12 +1,11 @@
 <?php
-session_start();
 include "../settings/connection.php";
 
 // Get the current page from the URL parameter, default to 1 if not set
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
 // Calculate the offset based on the current page with 10 activities
-$limit = 10; 
+$limit = 10;
 $offset = ($current_page - 1) * $limit;
 
 $query_activities = "
@@ -46,4 +45,3 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 mysqli_close($conn);
-?>
