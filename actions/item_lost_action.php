@@ -8,6 +8,7 @@ if (isset($_POST['submit_button'])) {
     $locationFound = mysqli_real_escape_string($conn, $_POST['locationFound']);
     $itemDescription = mysqli_real_escape_string($conn, $_POST['itemDescription']);
     $userrole = $_SESSION['user_role'];
+    $userid = $_SESSION['user_id'];
     $time = $_POST['time'];
     $date = $_POST['date'];
 
@@ -44,7 +45,12 @@ if (isset($_POST['submit_button'])) {
         exit();
     }
 
-
+    if (isset($_POST["category"])) {
+        $category = $_POST["category"];
+    } else {
+        header("Location: ../view/ItemLostPage.php?error=Please select a category.");
+        exit();
+    }
 
     $target_dir = "../uploads/";
     $target_file = $target_dir . basename($_FILES["photo"]["name"]);
@@ -78,7 +84,7 @@ if (isset($_POST['submit_button'])) {
                 $count_items = mysqli_num_rows($result2);
 
                 if ($count_items == 0) {
-                    $sql3 = "INSERT INTO lost_items(rid,sid,image_id,item_name,time,location,description) VALUES('$userrole',1,'$image_id' ,'$itemName','$time','$locationFound','$itemDescription')";
+                    $sql3 = "INSERT INTO lost_items(rid,sid,image_id,item_name,time,location,description,date,interaction_time,uid,category) VALUES('$userrole',1,'$image_id' ,'$itemName','$time','$locationFound','$itemDescription',$date,NOW(),$userid,$category)";
                     $result3 = mysqli_query($conn, $sql3);
 
                     if ($result3) {
