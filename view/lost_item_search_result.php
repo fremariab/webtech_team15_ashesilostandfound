@@ -139,7 +139,8 @@
                     if ($searchResults && !empty($searchResults)) {
                         foreach ($searchResults as $result) {
                             echo "<div class='item'>";
-                            echo "<h3>Item Name: " . $result["item_name"] . "</h3>";
+                            // echo "<h3>Item Name: " . $result["item_name"] . "</h3>";
+                           echo '<h3><a href="../view/items_details_lost.php?itemid=' . $result["itemid"] . '">' . $result["item_name"] . '</a></h3>';
                             echo "<p>Location: " . $result["location"] . "</p>";
                             echo "<p>Description: " . $result["description"] . "</p>";
                             echo "</div>";

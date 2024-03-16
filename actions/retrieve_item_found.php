@@ -5,7 +5,10 @@ session_start();
 include "../settings/connection.php";
 
 function getFoundItems($connection, $limit, $offset, $sortBy, $itemType, $location) {
-    $sql = "SELECT * FROM Found_Items WHERE 1=1";
+    $sql = "SELECT f.*, i.file_name, s.sname
+            FROM found_items f 
+            INNER JOIN image i ON f.image_id = i.image_id
+            INNER JOIN found_status s ON f.sid = s.sid WHERE 1=1";
 
     
     if (!empty($itemType)) {

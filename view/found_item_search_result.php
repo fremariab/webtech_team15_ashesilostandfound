@@ -82,31 +82,31 @@
                 <img src="../images/logo.png" height="64px" alt="">
             </a>
             <ul class="side-menu top">
-                <li class="active">
-                    <a href="#">
+                <li id="dashboardMenuItem" >
+                    <a href="../view/user_dash.php">
                         <i class='bx bxs-dashboard'></i>
                         <span class="text">Dashboard</span>
                     </a>
                 </li>
-                <li>
+                <li id="searchFoundItemsMenuItem">
                     <a href="../view/item_found.php">
                         <i class='bx bxs-report'></i>
                         <span class="text">Search Found Items</span>
                     </a>
                 </li>
-                <li>
+                <li id="searchLostItemsMenuItem">
                     <a href="../view/item_lost.php">
                         <i class='bx bxs-report'></i>
                         <span class="text">Search Lost Items</span>
                     </a>
                 </li>
-                <li>
+                <li id="reportFoundItemMenuItem">
                     <a href="../view/Submission.php">
                         <i class='bx bxs-report'></i>
                         <span class="text">Report Found Item</span>
                     </a>
                 </li>
-                <li>
+                <li id="reportLostItemMenuItem">
                     <a href="../view/ItemLostPage.php">
                         <i class='bx bxs-report'></i>
                         <span class="text">Report Lost Item</span>
@@ -135,6 +135,7 @@
             <div class="search-results">
                 <?php
                 include "../settings/connection.php";
+                
 
                 // Pagination variables
                 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
@@ -153,7 +154,11 @@
 
                         foreach ($searchResults as $result) {
                             echo "<div class='item'>";
-                            echo "<h3>Item Name: " . $result["item_name"] . "</h3>";
+                           
+                            echo '<h3><a href="../view/items_details_found.php?itemid=' . $result["itemid"] . '">' . $result["item_name"] . '</a></h3>';
+
+                            // echo "<h3>Item Name: " . $result["item_name"] . "</h3>";
+                    
                             echo "<p>Location: " . $result["location"] . "</p>";
                             echo "<p>Description: " . $result["description"] . "</p>";
                             echo "</div>";
@@ -209,6 +214,44 @@ document.addEventListener("DOMContentLoaded", function() {
     sidebarToggle.addEventListener("click", toggleSidebar);
 });
 
+
+document.addEventListener("DOMContentLoaded", function() {
+   
+    const menuItems = document.querySelectorAll(".side-menu li");
+
+    
+    function setActiveMenuItemFromURL() {
+        const currentURL = window.location.href;
+        const relativePath = currentURL.split("/").pop(); 
+        console.log("Relative Path:", relativePath);
+        menuItems.forEach(menuItem => {
+            const link = menuItem.querySelector("a");
+            const menuItemURL = link.getAttribute("href");
+            console.log("Menu Item URL:", menuItemURL);
+            if (menuItemURL && menuItemURL.includes("item_found.php"))  {
+                menuItem.classList.add("active");
+            } else {
+                menuItem.classList.remove("active");
+            }
+        });
+    }
+
+    
+    setActiveMenuItemFromURL();
+
+    
+    menuItems.forEach(menuItem => {
+        menuItem.addEventListener("click", function(event) {
+            console.log("Clicked menu item:", menuItem);
+            
+            menuItems.forEach(item => {
+                item.classList.remove("active");
+            });
+            
+            menuItem.classList.add("active");
+        });
+    });
+});
 
 
 </script>

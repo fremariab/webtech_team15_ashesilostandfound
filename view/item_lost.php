@@ -194,23 +194,6 @@
                 <div class="lost">
                     <?php
                     include "../actions/retrieve_item_lost.php";
-                    $lostItems = getLostItems($conn, $limit, $offset, $sortBy, $itemType, $location);
-
-                    if (!empty($lostItems)) {
-                        foreach ($lostItems as $item) {
-                    ?>
-                            <div class="item">
-                                <img src="<?php echo $item['image_id']; ?>" alt="" class="image">
-                                <!-- Link to redirect to the full page with description -->
-                                <h3><a href="item_detail?item_id=<?php echo $item['itemid']; ?>"><?php echo $item['item_name']; ?></a></h3>
-                                <p><?php echo $item['description']; ?></p>
-                                <p><?php echo $item['interaction_time']; ?></p>
-                            </div>
-                        <?php
-                        }
-                    } else {
-                        echo "<p>No items found.</p>";
-                    }
                     ?>
                 </div>
             </div>
@@ -225,7 +208,15 @@
     </div>
 
     <script>
-
+function toggleCustomLocationInput() {
+    var locationSelect = document.getElementById("location-select");
+    var customLocationInput = document.getElementById("custom-location-input");
+    if (locationSelect.value === "other") {
+        customLocationInput.style.display = "block";
+    } else {
+        customLocationInput.style.display = "none";
+    }
+}
     document.addEventListener("DOMContentLoaded", function() {
     const sidebar = document.getElementById("sidebar");
     const sidebarToggle = document.getElementById("sidebarToggle");
@@ -257,18 +248,43 @@
     sidebarToggle.addEventListener("click", toggleSidebar);
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+   
+    const menuItems = document.querySelectorAll(".side-menu li");
 
-        function toggleCustomLocationInput() {
-            var locationSelect = document.getElementById("location-select");
-            var customLocationInput = document.getElementById("custom-location");
-
-            if (locationSelect.value === "other") {
-                customLocationInput.style.display = "inline-block";
-                customLocationInput.value = "";
+    
+    function setActiveMenuItemFromURL() {
+        const currentURL = window.location.href;
+        const relativePath = currentURL.split("/").pop(); 
+        console.log("Relative Path:", relativePath);
+        menuItems.forEach(menuItem => {
+            const link = menuItem.querySelector("a");
+            const menuItemURL = link.getAttribute("href");
+            console.log("Menu Item URL:", menuItemURL);
+            if (menuItemURL && menuItemURL.includes(relativePath)) {
+                menuItem.classList.add("active");
             } else {
-                customLocationInput.style.display = "none";
+                menuItem.classList.remove("active");
             }
-        }
+        });
+    }
+
+    
+    setActiveMenuItemFromURL();
+
+    
+    menuItems.forEach(menuItem => {
+        menuItem.addEventListener("click", function(event) {
+            console.log("Clicked menu item:", menuItem);
+            
+            menuItems.forEach(item => {
+                item.classList.remove("active");
+            });
+            
+            menuItem.classList.add("active");
+        });
+    });
+});
 
         var currentPage = 1;
 
@@ -303,7 +319,7 @@
                     items.forEach(function (item) {
                         var itemHTML = '<div class="item">' +
                             '<img src="' + item.image_id + '" alt="" class="image">' +
-                            '<h3>' + item.item_name + '</h3>' +
+                            '<h3><a href="../view/items_details_lost.php?itemid=' + item.itemid + '">' + item.item_name + '</a></h3>' +
                             '<p>' + item.description + '</p>' +
                             '<p>' + item.interaction_time + '</p>'
                         '</div>';

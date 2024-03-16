@@ -1,5 +1,78 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap");
 
+ /* Previous and Next Buttons */
+    .pages {
+        position: relative;
+        margin-top: 24px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .pages button {
+        padding: 10px 20px;
+        border-radius: 10px;
+        background: var(--blue);
+        color: var(--light);
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .pages button:hover {
+        background: var(--light-orange);
+    }
+
+    #prev-btn {
+        position: absolute;
+        left: 0;
+    }
+
+    #next-btn {
+        position: absolute;
+        right: 0;
+    }
+
+    #sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    transition: left 0.3s ease;
+    z-index: 1000; 
+}
+
+#sidebarToggle {
+    position: fixed;
+    top: 10px;
+    left: 220px;
+    z-index: 1001; 
+}
+
+.side-menu li {
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+}
+
+/* #sidebar .side-menu li.active {
+    background: var(--grey);
+    position: relative;
+} */
+
+.shifted-sidebar #sidebarToggle {
+    left: 220px;
+}
+
+.unshifted-sidebar #sidebarToggle {
+    left: 10px;
+}
+.shifted-content {
+    margin-left: 250px; 
+    transition: margin-left 0.3s ease; 
+}
+
 * {
   margin: 0;
   padding: 0;

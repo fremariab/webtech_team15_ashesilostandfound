@@ -152,9 +152,6 @@
         <div class="items shifted-content">
             <h2>Items Found</h2>
 
-            
-
-
             <form action="../actions/found_item_search.php" method="GET">
                 <div class="form-input">
                 <input type="search" name="keyword" placeholder="Search" style="width: calc(10% - 10px);float: right;">
@@ -205,23 +202,6 @@
                 <div class="lost">
                     <?php
                     include "../actions/retrieve_item_found.php";
-                    $foundItems = getFoundItems($conn, $limit, $offset, $sortBy, $itemType, $location);
-
-                    if (!empty($foundItems)) {
-                        foreach ($foundItems as $item) {
-                    ?>
-                            <div class="item">
-                                <img src="<?php echo $item['image_id']; ?>" alt="" class="image">
-                                <!-- Link to redirect to the full page with description -->
-                                <h3><a href="item_detail?item_id=<?php echo $item['itemid']; ?>"><?php echo $item['item_name']; ?></a></h3>
-                                <p><?php echo $item['description']; ?></p>
-                                <p><?php echo $item['interaction_time']; ?></p>
-                            </div>
-                        <?php
-                        }
-                    } else {
-                        echo "<p>No items found.</p>";
-                    }
                     ?>
                 </div>
             </div>
@@ -314,22 +294,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-
-
-
-
-        // function toggleCustomLocationInput() {
-        //     var locationSelect = document.getElementById("location-select");
-        //     var customLocationInput = document.getElementById("custom-location");
-
-        //     if (locationSelect.value === "other") {
-        //         customLocationInput.style.display = "inline-block";
-        //         customLocationInput.value = "";
-        //     } else {
-        //         customLocationInput.style.display = "none";
-        //     }
-        // }
-
         var currentPage = 1;
 
         function loadNextPage() {
@@ -359,10 +323,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     var items = JSON.parse(xhr.responseText);
                     items.forEach(function (item) {
                         var itemHTML = '<div class="item">' +
-                            '<img src="' + item.image_id + '" alt="" class="image">' +
-                            '<h3>' + item.item_name + '</h3>' +
-                            '<p>' + item.description + '</p>' +
-                            '<p>' + item.interaction_time + '</p>'
+                        '<img src="' + item.image_id + '" alt="" class="image">' +
+                        '<h3><a href="../view/items_details_found.php?itemid=' + item.itemid + '">' + item.item_name + '</a></h3>' +
+                        '<p>' + item.description + '</p>' +
+                        '<p> Status: ' + item.sname + '</p>' +
+                        // '<p>' + item.interaction_time + '</p>' +
                         '</div>';
                         itemsContainer.innerHTML += itemHTML;
                     });
