@@ -15,11 +15,11 @@
                 <img id = "Logo" src = "Ashesi-logo.png">
             </div>
             <div class="sidebar-top">
-                <a href="Submission.html"> Dashboard</a>
-                <a href="Submission.html"> Search Found Items</a>
-                <a href="Submission.html"> Search Lost Items</a>
-                <a href="Submission.html"> Report Lost Item</a>
-                <a href="Submission.html"> Report Found Item</a>
+                <a href="user_dash.php"> Dashboard</a>
+                <a href="#"> Search Found Items</a>
+                <a href="#"> Search Lost Items</a>
+                <a href="ItemLostPage.php"> Report Lost Item</a>
+                <a href="Submission.php"> Report Found Item</a>
             </div>
             
             <div class="sidebar-bottom">

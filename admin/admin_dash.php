@@ -15,10 +15,10 @@
                 <img id = "Logo" src = "Ashesi-logo.png">
             </div>
             <div class="sidebar-top">
-                <a href="Submission.html"> Dashboard</a>
-                <a href="Submission.html"> Show all lost items</a>
-                <a href="Submission.html"> Show found items</a>
-                <a href="Submission.html"> Change status</a>
+                <a href="#"> Dashboard</a>
+                <a href="#"> Show all lost items</a>
+                <a href="#"> Show found items</a>
+                <a href="#"> Change status</a>
             </div>
             
             <div class="sidebar-bottom">
