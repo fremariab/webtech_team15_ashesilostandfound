@@ -56,7 +56,7 @@
     <div class="member">
         <img src="../images/sandra.jpeg" alt="Member 4" style="padding-right: 15px;">
         <h3>Sandra Nettey</h3>
-        <p id="bio">Etiam nec mi a leo ultrices aliquam. Morbi laoreet interdum nisi vel placerat.</p>
+        <p id="bio">Sandra is a committed web developer who enjoys backend programming and streamlining user experiences.</p>
     </div>
     <div class="member">
         <img src="../images/heidi.jpeg" alt="Member 5" style="padding-right: 15px;">
