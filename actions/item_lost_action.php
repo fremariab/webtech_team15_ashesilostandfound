@@ -41,7 +41,7 @@ if (isset($_POST['submit_button'])) {
         header("Location: ../view/lostitem_reporting_page.php?error=Time is required");
         exit();
     } else if (empty($itemDescription)) {
-        header("Location: ../view/ItemLostpPge.php?error=Item Description is required");
+        header("Location: ../view/lostitem_reporting_page.php?error=Item Description is required");
         exit();
     }
 

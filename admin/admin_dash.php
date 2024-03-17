@@ -12,7 +12,7 @@
     <div class = "dashboard-container">
         <aside class = "sidebar">
             <div class = "sidebar-logo">
-                <img id = "Logo" src = "Ashesi-logo.png">
+                <img id = "Logo" src = "../images/logo.png" height="64px" > 
             </div>
             <div class="sidebar-top">
                 <a href="Submission.html"> Dashboard</a>
