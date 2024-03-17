@@ -5,7 +5,7 @@ session_start();
 include "../settings/connection.php";
 
 function getLostItems($connection, $limit, $offset, $sortBy, $itemType, $location) {
-    $sql = "SELECT * FROM Lost_Items WHERE 1=1";
+    $sql = "SELECT * FROM lost_items WHERE 1=1";
 
     
     if (!empty($itemType)) {
