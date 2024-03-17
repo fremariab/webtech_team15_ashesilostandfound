@@ -32,13 +32,13 @@ if (isset($_POST['submit_button'])) {
 
 
     if (empty($itemName)) {
-        header("Location: ../view/item_reporting_page.php?error=Item Name is required");
+        header("Location: ../view/lostitem_reporting_page.php?error=Item Name is required");
         exit();
     } else if (empty($locationFound)) {
-        header("Location: ../view/item_reporting_page.php?error=Location Found is required");
+        header("Location: ../view/lostitem_reporting_page.php?error=Location Found is required");
         exit();
     } else if (empty($time)) {
-        header("Location: ../view/item_reporting_page.php?error=Time is required");
+        header("Location: ../view/lostitem_reporting_page.php?error=Time is required");
         exit();
     } else if (empty($itemDescription)) {
         header("Location: ../view/ItemLostpPge.php?error=Item Description is required");
@@ -48,7 +48,7 @@ if (isset($_POST['submit_button'])) {
     if (isset($_POST["category"])) {
         $category = $_POST["category"];
     } else {
-        header("Location: ../view/item_reporting_page.php?error=Please select a category.");
+        header("Location: ../view/lostitem_reporting_page.php?error=Please select a category.");
         exit();
     }
 
@@ -58,12 +58,12 @@ if (isset($_POST['submit_button'])) {
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
     if (file_exists($target_file)) {
-        header("Location: ../view/item_reporting_page.php?error=Sorry, file already exists.");
+        header("Location: ../view/lostitem_reporting_page.php?error=Sorry, file already exists.");
         exit();
     }
 
     if ($uploadOk == 0) {
-        header("Location: ../view/item_reporting_page.php?error=Sorry, your file was not uploaded.");
+        header("Location: ../view/lostitem_reporting_page.php?error=Sorry, your file was not uploaded.");
     } else {
         if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
             $file_Size = $_FILES["photo"]["size"];
@@ -92,12 +92,12 @@ if (isset($_POST['submit_button'])) {
                     }
                 } else {
                     if ($count_items > 0) {
-                        header("Location: ../view/item_reporting_page.php?error=This item has already been declared lost in");
+                        header("Location: ../view/lostitem_reporting_page.php?error=This item has already been declared lost in");
                     }
                 }
             }
         } else {
-            header("Location: ../view/item_reporting_page.php?error=Sorry, there was an error uploading your file.");
+            header("Location: ../view/lostitem_reporting_page.php?error=Sorry, there was an error uploading your file.");
         }
     }
 }
