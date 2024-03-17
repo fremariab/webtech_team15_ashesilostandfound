@@ -47,7 +47,7 @@ section {
 }
 
 #description {
-    background-color: #FFF7ED;
+    background-color: #FFF8ED;
     color: #1C402E;
 }
 
@@ -180,11 +180,11 @@ footer {
     width: 100%;
     padding-left: 2.5rem;
     outline: none;
-    background: linear-gradient(180deg,     rgb(56, 56, 56) 0%, rgb(36, 36, 36)   66%, rgb(41, 41, 41) 100%);
+    background: linear-gradient(180deg, rgb(56, 56, 56) 0%, rgb(36, 36, 36)   66%, rgb(41, 41, 41) 100%);
     color: #fff;
     transition: .3s ease;
     border: 2px solid;
-    border-image: conic-gradient( #00F260, #0575E6,#64f38c) 1;
+    border-image: conic-gradient( #00F260, #1C402E,#FFF8ED) 1;
   }
   
   .input::placeholder {
