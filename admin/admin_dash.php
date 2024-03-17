@@ -35,29 +35,21 @@
                 <p>Admin Name</p>
             </header>
 
-            <div class="subheader">
-                <div class="left">
-                    <text>
-                        <a href="#">Dashboard ></a> <a href="#">Home</a>
-                    </text>
-                </div>
-
-            </div>
-
             <section class = "stats">
                 <div class = "box">
-                    <h3> 1020</h3>
+                <h3 id="found-items-count"></h3>
                     <p>Found Items</p>
                 </div>
                 <div class = "box">
-                    <h3>1020</h3>
+                <h3 id="lost-items-count"> </h3>
                     <p>Lost Items</p>
                 </div>
                 <div class = "box">
-                    <h3>1020</h3>
+                <h3 id="claimed-items-count"></h3>
                     <p>Claimed Items</p>
                 </div>
             </section>
+            
 
             <section class="recent-activities">
                 <h2>Recent Activities</h2>
@@ -70,12 +62,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>John Doe</td>
-                            <td>01-03-2024</td>
-                            <td>Reported a lost item</td>
-                        </tr>
+                    <tbody id="activity-table-body">
+                            <?php include "../actions/admin_dash_activities.php"; ?>
                     </tbody>
+</table>
+<div class="pagination">
+                        <button id="prev-btn" onclick="loadPreviousPage()">Previous</button>
+                        <button id="next-btn" onclick="loadNextPage()">Next</button>
+                    </div>
             </section>
             
         </main>
@@ -84,4 +78,49 @@
     
     </div>
     
+    <script src="../js/admin_dash_script.js"></script>
+
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "../actions/admin_dash_stats.php", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Yes")
+                var statistics = JSON.parse(xhr.responseText);
+                console.log("Statistics:", statistics);
+
+                document.getElementById("found-items-count").textContent = statistics.found_items;
+                document.getElementById("lost-items-count").textContent = statistics.lost_items;
+                document.getElementById("claimed-items-count").textContent = statistics.claimed_items;
+            }
+        };
+        xhr.send();
+
+        var currentPage = 1;
+
+        function loadNextPage() {
+            currentPage++;
+            loadData(currentPage);
+        }
+
+        function loadPreviousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                loadData(currentPage);
+            }
+        }
+
+        function loadData(page) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "../actions/admin_dash_activities.php?page=" + page, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var tableBody = document.getElementById("activity-table-body");
+                    tableBody.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+    </script>
 </body>
+</html>
