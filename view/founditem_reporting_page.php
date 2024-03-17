@@ -7,14 +7,14 @@ include "../settings/core.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/ItemLostPage.css">
-    <title>Report a Lost Item Form</title>
+    <link rel="stylesheet" href="../css/Submission.css">
+    <title>Report Found Item</title>
 </head>
 
 <body>
     <div class="form-container">
-        <div class="form-header"><b>Report a Lost Item</b></div>
-        <form action="../actions/item_lost_action.php" method="POST" enctype="multipart/form-data">
+        <div class="form-header"><b>Report a Found Item</b></div>
+        <form action="../actions/item_found_action.php" method="POST" enctype="multipart/form-data">
             <?php
             if (isset($_GET['error'])) { ?>
                 <p class="error" style="color:red"><?php echo $_GET['error'] ?></p>
@@ -23,7 +23,7 @@ include "../settings/core.php";
                 <label style="color : green " for="itemName">Item Name</label>
                 <input type="text" id="itemName" name="itemName">
 
-                <label style="color : green " for="locationLost">Location Lost</label>
+                <label style="color : green " for="locationFound">Location Lost</label>
                 <input type="text" id="locationFound" name="locationFound">
                 <div>
                     <label style="color: green; display: block;" for="dateFound">Date & Time Lost</label>

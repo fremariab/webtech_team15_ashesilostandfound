@@ -113,7 +113,7 @@
                 </a>
             </li>
             <li>
-                <a href="../view/Submission.php">
+                <a href="../view/founditem_reporting_page.php">
                     <i class='bx bxs-report'></i>
                     <span class="text">Report Found Item</span>
                 </a>

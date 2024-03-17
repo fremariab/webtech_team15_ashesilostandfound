@@ -15,16 +15,16 @@
                 <img id = "Logo" src = "../images/logo.png" height="64px" > 
             </div>
             <div class="sidebar-top">
-                <a href="Submission.html"> Dashboard</a>
-                <a href="Submission.html"> Show all lost items</a>
-                <a href="Submission.html"> Show found items</a>
-                <a href="Submission.html"> Change status</a>
+                <a href="founditem_reporting_page.php"> Dashboard</a>
+                <a href="founditem_reporting_page.php"> Show all lost items</a>
+                <a href="founditem_reporting_page.php"> Show found items</a>
+                <a href="founditem_reporting_page.php"> Change status</a>
             </div>
             
             <div class="sidebar-bottom">
                 <hr>
-                <a href="Submission.html"> Profile</a>
-                <a href="Submission.html"> Logout</a>
+                <a href="founditem_reporting_page.php"> Profile</a>
+                <a href="founditem_reporting_page.php"> Logout</a>
             </div>
 
         </aside>
