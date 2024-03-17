@@ -16,8 +16,8 @@
             </div>
             <div class="sidebar-top">
                 <a href="user_dash.php"> Dashboard</a>
-                <a href="#"> Search Found Items</a>
-                <a href="#"> Search Lost Items</a>
+                <a href="item_found.php"> Search Found Items</a>
+                <a href="items_details.php"> Search Lost Items</a>
                 <a href="ItemLostPage.php"> Report Lost Item</a>
                 <a href="Submission.php"> Report Found Item</a>
             </div>
