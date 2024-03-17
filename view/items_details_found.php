@@ -125,7 +125,7 @@
         </a>
     </li>
     <li id="reportLostItemMenuItem" >
-        <a href="../view/ItemLostPage.php">
+        <a href="../view/item_reporting_page.php">
             <i class='bx bxs-report'></i>
             <span class="text">Report Lost Item</span>
         </a>
