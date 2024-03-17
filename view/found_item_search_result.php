@@ -133,127 +133,50 @@
         <div class="items shifted-content">
             <h1>Search Results</h1>
             <div class="search-results">
-                <?php
-                include "../settings/connection.php";
-                
+               <!-- Pagination Logic -->
+ <?php
+       if (isset($_GET["results"]) && isset($_GET["total_rows"])) {
+           $searchResults = json_decode($_GET["results"], true);
+           $total_rows = $_GET["total_rows"];
 
-                // Pagination variables
-                $page = isset($_GET['page']) && is_numeric($_GET['page']) ? $_GET['page'] : 1;
-                $prev_page = $page - 1;
-                $next_page = $page + 1;
-                $records_per_page = 2;
+           if (!empty($searchResults)) {
+               $records_per_page = 2; 
+               $total_pages = ceil($total_rows / $records_per_page);
+               $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
-                if (isset($_GET["results"])) {
-                    $searchResults = json_decode(urldecode($_GET["results"]), true);
-                    if ($searchResults && !empty($searchResults)) {
-                        $total_results = count($searchResults);
-                        $num_pages = ceil($total_results / $records_per_page);
-                        $start = ($page - 1) * $records_per_page;
-                        $end = $start + $records_per_page;
-                        $searchResults = array_slice($searchResults, $start, $records_per_page);
+               // Slice search results for pagination
+               $start = ($current_page - 1) * $records_per_page;
+               $end = $start + $records_per_page;
+               $searchResults = array_slice($searchResults, $start, $records_per_page);
 
-                        foreach ($searchResults as $result) {
-                            echo "<div class='item'>";
-                           
-                            echo '<h3><a href="../view/items_details_found.php?itemid=' . $result["itemid"] . '">' . $result["item_name"] . '</a></h3>';
+               foreach ($searchResults as $result) {
+                   echo "<div class='item'>";
+                   echo "<h3><a href='../view/items_details_found.php?itemid=" . $result["itemid"] . "'>" . $result["item_name"] . "</a></h3>";
+                   echo "<p>Location: " . $result["location"] . "</p>";
+                   echo "<p>Description: " . $result["description"] . "</p>";
+                   echo "</div>";
+               }
 
-                            // echo "<h3>Item Name: " . $result["item_name"] . "</h3>";
-                    
-                            echo "<p>Location: " . $result["location"] . "</p>";
-                            echo "<p>Description: " . $result["description"] . "</p>";
-                            echo "</div>";
-                        }
-
-                        
-                        echo "<div class='pages'>";
-                        if ($page > 1) {
-                            echo "<a href='found_item_search_result.php?page=$prev_page'><button id='prev-btn'>Previous</button></a>";
-                        }
-                        if ($page < $num_pages) {
-                            echo "<a href='found_item_search_result.php?page=$next_page'><button id='next-btn'>Next</button></a>";
-                        }
-                        echo "</div>";
-                    } else {
-                        echo "<p>No matching items found.</p>";
-                    }
-                } else {
-                    echo "<p>No search results available.</p>";
-                }
-                ?>
-            </div>
+               // pagination controls
+               echo "<div class='pages'>";
+               if ($current_page > 1) {
+                   echo "<a href='found_item_search_result.php?page=" . ($current_page - 1) . "&results=" . urlencode($_GET['results']) . "&total_rows=" . $total_rows . "'><button id='prev-btn'>Previous</button></a>";
+               }
+               if ($current_page < $total_pages) {
+                   echo "<a href='found_item_search_result.php?page=" . ($current_page + 1) . "&results=" . urlencode($_GET['results']) . "&total_rows=" . $total_rows . "'><button id='next-btn'>Next</button></a>";
+               }
+               echo "</div>";
+           } else {
+               echo "<p>No matching items found.</p>";
+           }
+       } else {
+           echo "<p>No search results available.</p>";
+       }
+       ?>   </div>
         </div>
     </div>
 
-    <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const sidebar = document.getElementById("sidebar");
-    const sidebarToggle = document.getElementById("sidebarToggle");
-    const content = document.querySelector(".items");
-
-    sidebar.style.left = "0px"; 
-    content.classList.add("shifted-content"); 
-    sidebar.classList.add("shifted-sidebar"); 
-    sidebarToggle.classList.add("shifted-sidebar");
-
-    
-    function toggleSidebar() {
-        if (sidebar.style.left === "0px") {
-            sidebar.style.left = "-250px";
-            content.classList.remove("shifted-content");
-            sidebar.classList.remove("shifted-sidebar");
-            sidebarToggle.classList.remove("shifted-sidebar");
-        } else {
-            sidebar.style.left = "0px";
-           content.classList.add("shifted-content");
-            sidebar.classList.add("shifted-sidebar");
-            sidebarToggle.classList.add("shifted-sidebar");
-        }
-    }
-
-    
-    sidebarToggle.addEventListener("click", toggleSidebar);
-});
-
-
-document.addEventListener("DOMContentLoaded", function() {
-   
-    const menuItems = document.querySelectorAll(".side-menu li");
-
-    
-    function setActiveMenuItemFromURL() {
-        const currentURL = window.location.href;
-        const relativePath = currentURL.split("/").pop(); 
-        console.log("Relative Path:", relativePath);
-        menuItems.forEach(menuItem => {
-            const link = menuItem.querySelector("a");
-            const menuItemURL = link.getAttribute("href");
-            console.log("Menu Item URL:", menuItemURL);
-            if (menuItemURL && menuItemURL.includes("item_found.php"))  {
-                menuItem.classList.add("active");
-            } else {
-                menuItem.classList.remove("active");
-            }
-        });
-    }
-
-    
-    setActiveMenuItemFromURL();
-
-    
-    menuItems.forEach(menuItem => {
-        menuItem.addEventListener("click", function(event) {
-            console.log("Clicked menu item:", menuItem);
-            
-            menuItems.forEach(item => {
-                item.classList.remove("active");
-            });
-            
-            menuItem.classList.add("active");
-        });
-    });
-});
-
-
-</script>
 </body>
+<script src="../js/item_page.js"></script>
+
 </html>

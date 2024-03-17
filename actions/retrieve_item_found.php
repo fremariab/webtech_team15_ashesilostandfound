@@ -78,13 +78,13 @@ $itemType = isset($_GET['item_type']) ? $_GET['item_type'] : '';
 $location = isset($_GET['location']) ? $_GET['location'] : '';
 
 // Define limit and offset for pagination
-$limit = 10; // Change this to the number of items you want to display per page
+$limit = 10; 
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($current_page - 1) * $limit;
 
 // Retrieve found items with sorting, filtering, and pagination
 $foundItems = getFoundItems($conn, $limit, $offset, $sortBy, $itemType, $location);
 
-// Encode the found items as JSON and echo the result
+
 echo json_encode($foundItems);
 ?>
