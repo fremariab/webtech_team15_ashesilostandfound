@@ -94,8 +94,6 @@
        <button id="sidebarToggle"><i class="material-icons">menu</i></button>
 
         <div id="sidebar">
-
-        
         <a href="../view/user_dash.php" class="brand">
             <img src="../images/logo.png" height="64px" alt="">
         </a>

@@ -10,38 +10,9 @@
     <title>Items Details</title>
     <link rel="stylesheet" href="../css/item_details.css">
     <link rel="stylesheet" href="../css/user_dash_style.css">
-
-    
+ 
 </head>
 <style>
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            /* semi-transparent black */
-            z-index: 1000;
-            display: none;
-            /* hidden by default */
-        }
-
-        .form-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            z-index: 1001;
-            /* ensure it's above overlay */
-            display: none;
-            /* hidden by default */
-        }
-
-
          /* Previous and Next Buttons */
     .pages {
         position: relative;
@@ -179,7 +150,7 @@
         </div>
 
 
-    <div class="items">
+    <div class="items shifted-content">
 
 
         <h2 style="text-align: center;"> Item Details</h2>
@@ -217,79 +188,10 @@
                 ?>
         </div>
     </div>
-
+<script src="../js/item_page.js"></script>
     <script src="../js/expand_item.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const sidebar = document.getElementById("sidebar");
-    const sidebarToggle = document.getElementById("sidebarToggle");
-    const content = document.querySelector(".items");
-
-    sidebar.style.left = "0px"; 
-    content.classList.add("shifted-content"); 
-    sidebar.classList.add("shifted-sidebar"); 
-    sidebarToggle.classList.add("shifted-sidebar");
-
-    
-    function toggleSidebar() {
-        if (sidebar.style.left === "0px") {
-            sidebar.style.left = "-250px";
-            content.classList.remove("shifted-content");
-            sidebar.classList.remove("shifted-sidebar");
-            sidebarToggle.classList.remove("shifted-sidebar");
-        } else {
-            sidebar.style.left = "0px";
-           content.classList.add("shifted-content");
-            sidebar.classList.add("shifted-sidebar");
-            sidebarToggle.classList.add("shifted-sidebar");
-        }
-    }
-
-    
-    sidebarToggle.addEventListener("click", toggleSidebar);
-});
 
 
-document.addEventListener("DOMContentLoaded", function() {
-   
-    const menuItems = document.querySelectorAll(".side-menu li");
-
-    
-    function setActiveMenuItemFromURL() {
-        const currentURL = window.location.href;
-        const relativePath = currentURL.split("/").pop(); 
-        console.log("Relative Path:", relativePath);
-        menuItems.forEach(menuItem => {
-            const link = menuItem.querySelector("a");
-            const menuItemURL = link.getAttribute("href");
-            console.log("Menu Item URL:", menuItemURL);
-            if (menuItemURL && menuItemURL.includes("item_found.php"))  {
-                menuItem.classList.add("active");
-            } else {
-                menuItem.classList.remove("active");
-            }
-        });
-    }
-
-    
-    setActiveMenuItemFromURL();
-
-    
-    menuItems.forEach(menuItem => {
-        menuItem.addEventListener("click", function(event) {
-            console.log("Clicked menu item:", menuItem);
-            
-            menuItems.forEach(item => {
-                item.classList.remove("active");
-            });
-            
-            menuItem.classList.add("active");
-        });
-    });
-});
-
-
-</script>
 
 </body>
 

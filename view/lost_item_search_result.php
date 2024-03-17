@@ -177,4 +177,5 @@
     </div>
 
 </body>
+<script src="../js/item_page.js"></script>
 </html>
