@@ -9,7 +9,7 @@
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
     <link rel="stylesheet" href="../css/item_details.css">
-    <link rel="stylesheet" href="../css/user_dash_style.css">
+    <link rel="stylesheet" href="../css/dash_style.css">
     <title>Lost Items</title>
 </head>
 <style>
@@ -84,63 +84,27 @@
 </style>
 
 <body>
-    <div class="overall">
-       <button id="sidebarToggle"><i class="material-icons">menu</i></button>
+    <div class = "sidebar">
+            <div class = "sidebar-logo">
+                <a href="../admin/admin_dash.php">
+                <img id = "Logo" src = "../images/logo.png" height="64px" > </a>
+            </div>
+            <div class="sidebar-top">
+                <a href="../admin/admin_dash.php"> Dashboard</a>
+                <a href="../admin/all_lost_items.php"> All Lost Items</a>
+                <a href="../admin/all_found_items.php"> All Found Items</a>
+                <a href="../admin/all_claimed_items.php"> All Claimed Items</a>
+                <a href="../admin/change_item_status.php"> Change Item Status</a>
+                <a href="../admin/send_mail.php"> Send mail</a>
+            </div>
+            
+            <div class="sidebar-bottom">
+                <hr>
+                <a href="../view/user_profile.php"> Profile</a>
+                <a href="../login/logout.php"> Logout</a>
+            </div>
 
-        <div id="sidebar">
-
-        
-        <a href="../view/user_dash.php" class="brand">
-            <img src="../images/logo.png" height="64px" alt="">
-        </a>
-        <ul class="side-menu top">
-            <li class="active">
-                <a href="../view/user_dash.php">
-                    <i class='bx bxs-dashboard'></i>
-                    <span class="text">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="../view/item_found.php">
-                    <i class='bx bxs-report'></i>
-                    <span class="text">Search Found Items</span>
-                </a>
-            </li>
-            <li>
-                <a href="../view/item_lost.php">
-                    <i class='bx bxs-report'></i>
-                    <span class="text">Search Lost Items</span>
-                </a>
-            </li>
-            <li>
-                <a href="../view/founditem_reporting_page.php">
-                    <i class='bx bxs-report'></i>
-                    <span class="text">Report Found Item</span>
-                </a>
-            </li>
-            <li>
-                <a href="../view/lostitem_reporting_page.php">
-                    <i class='bx bxs-report'></i>
-                    <span class="text">Report Lost Item</span>
-                </a>
-            </li>
-        </ul>
-        <ul class="side-menu">
-            <li>
-                <a href="#">
-                    <i class='bx bxs-user'></i>
-                    <span class="text">Profile</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="logout">
-                    <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
-                </a>
-            </li>
-        </ul>
-    
-        </div>
+</div>
 
         <div class="items shifted-content">
             <h2>Items Lost</h2>
@@ -207,7 +171,6 @@
             </div>
 
         </div>
-    </div>
 <script src="../js/item_lost.js"></script>
 <script src="../js/item_page.js"></script>
 

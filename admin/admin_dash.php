@@ -1,51 +1,69 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Dashboard</title>
-    <link rel="stylesheet" href="../css/admin_dash_style.css">
-
-
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../css/dash_style.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <div class = "dashboard-container">
-        <aside class = "sidebar">
+        <div class = "sidebar">
             <div class = "sidebar-logo">
-                <img id = "Logo" src = "../images/logo.png" height="64px" > 
+                <a href="../admin/admin_dash.php">
+                <img id = "Logo" src = "../images/logo.png" height="64px" > </a>
             </div>
             <div class="sidebar-top">
-                <a href="founditem_reporting_page.php"> Dashboard</a>
-                <a href="founditem_reporting_page.php"> Show all lost items</a>
-                <a href="founditem_reporting_page.php"> Show found items</a>
-                <a href="founditem_reporting_page.php"> Change status</a>
+                <a href="../admin/admin_dash.php"> Dashboard</a>
+                <a href="../admin/all_lost_items.php"> All Lost Items</a>
+                <a href="../admin/all_found_items.php"> All Found Items</a>
+                <a href="../admin/all_claimed_items.php"> All Claimed Items</a>
+                <a href="../admin/change_item_status.php"> Change Item Status</a>
+                <a href="../admin/send_mail.php"> Send mail</a>
+
             </div>
             
             <div class="sidebar-bottom">
                 <hr>
-                <a href="founditem_reporting_page.php"> Profile</a>
-                <a href="founditem_reporting_page.php"> Logout</a>
+                <a href="../view/user_profile.php"> Profile</a>
+                <a href="../login/logout.php"> Logout</a>
             </div>
 
-        </aside>
+</div>
 
-        <main class = "main-content">
+        <div class = "main-content">
+        <form action="../actions/main_search.php" method="GET">
+                <div class="form-input">
+                    <input type="search" name="keyword" placeholder="Search...">
+                    <button type="submit" class="search-btn"><i class='bx bx-search'></i></button>
+                </div>
+            </form>
             <header class = "header">
                 <h1>Dashboard</h1>
-                <p>Admin Name</p>
             </header>
 
             <section class = "stats">
                 <div class = "box">
+                <i class='bx bxs-calendar-check'></i>
+
                 <h3 id="found-items-count"></h3>
                     <p>Found Items</p>
                 </div>
                 <div class = "box">
-                <h3 id="lost-items-count"> </h3>
+                <i class='bx bxs-calendar-check'></i>
+
+
+                <h3 id="lost-items-count">                 <h3 id="lost-items-count"></h3>
+</h3>
                     <p>Lost Items</p>
                 </div>
                 <div class = "box">
-                <h3 id="claimed-items-count"></h3>
+                <i class='bx bxs-calendar-check'></i>
+
+                <h3 id="claimed-items-count">
+            </h3>
                     <p>Claimed Items</p>
                 </div>
             </section>

@@ -7,7 +7,7 @@ function loadData(page) {
   xhr.open(
     "GET",
     "../actions/retrieve_item_found.php?" +
-      new URLSearchParams(formData).toString(),
+    new URLSearchParams(formData).toString(),
     true
   );
   xhr.onreadystatechange = function () {
@@ -19,9 +19,8 @@ function loadData(page) {
       items.forEach(function (item) {
         var itemHTML =
           '<div class="item">' +
-          '<img src="' +
-          item.image_id +
-          '" alt="" class="image">' +
+          '<img src="../uploads/' + item.file_name +
+          '" alt=Item Image" class="image">' +
           '<h3><a href="../view/items_details_found.php?itemid=' +
           item.itemid +
           '">' +

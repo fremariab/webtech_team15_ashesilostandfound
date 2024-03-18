@@ -1,27 +1,27 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #FFF8ED;
+    background-color: rgb(255, 248, 237);
     margin: 0;
-
 }
 
 .dashboard-container {
     display: flex;
+    height: 100vh;
 }
 
 .sidebar {
     background-color: rgb(28, 64, 46);
-    height: 100%;
+    height: 95%;
     width: 15%;
-    color: #FFF8ED;
+    color: rgb(255, 248, 237);
     text-align: center;
     padding: 20px;
-    position: relative;
 }
 
 .sidebar-logo {
     align-self: flex-start;
     margin-bottom: 2px;
+    width: 50px;
 }
 
 .sidebar-logo img {
@@ -32,7 +32,7 @@ body {
 a {
     display: block;
     padding: 10px;
-    color: #FFF8ED;
+    color: rgb(255, 248, 237);
     text-decoration: none;
     margin-top: 10px;
 }
@@ -58,12 +58,13 @@ a {
 
 .box {
     background-color: rgb(28, 64, 46);
-    color: #FFF8ED;
+    color: rgb(255, 248, 237);
     padding: 20px;
     width: calc(20% - 20px);
     margin-right: 20px;
     text-align: center;
     border-radius: 8px;
+
 }
 
 header {
@@ -129,9 +130,7 @@ header {
 .main-content {
     flex: 1;
     padding: 20px;
-    background: #FFF8ED;
-    height: 100%;
-
+    background: rgb(255, 248, 237);
 }
 
 .recent-activities {
@@ -144,7 +143,7 @@ header {
 }
 
 .recent-activities h2 {
-    color: #FFF8ED;
+    color: rgb(255, 248, 237);
     margin-bottom: 10px;
 
 }
@@ -152,13 +151,13 @@ header {
 table {
     width: 100%;
     border-collapse: collapse;
-    color: #FFF8ED;
+    color: rgb(255, 248, 237);
 
 }
 
 table thead {
     background-color: rgb(28, 64, 46);
-    color: #FFF8ED;
+    color: rgb(255, 248, 237);
 }
 
 table th,

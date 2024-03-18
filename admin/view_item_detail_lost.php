@@ -10,38 +10,9 @@
     <title>Items Details</title>
     <link rel="stylesheet" href="../css/item_details.css">
     <link rel="stylesheet" href="../css/user_dash_style.css">
-
-    
+ 
 </head>
 <style>
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #FFF8ED;
-            /* semi-transparent black */
-            z-index: 1000;
-            display: none;
-            /* hidden by default */
-        }
-
-        .form-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            z-index: 1001;
-            
-            display: none;
-            /* hidden by default */
-        }
-
-
          /* Previous and Next Buttons */
     .pages {
         position: relative;
@@ -122,64 +93,29 @@
     <div class="overall">
        <button id="sidebarToggle"><i class="material-icons">menu</i></button>
 
-        <div id="sidebar">
+       <div class = "sidebar">
+            <div class = "sidebar-logo">
+                <a href="../admin/admin_dash.php">
+                <img id = "Logo" src = "../images/logo.png" height="64px" > </a>
+            </div>
+            <div class="sidebar-top">
+                <a href="../admin/admin_dash.php"> Dashboard</a>
+                <a href="../admin/all_lost_items.php"> All Lost Items</a>
+                <a href="../admin/all_found_items.php"> All Found Items</a>
+                <a href="../admin/all_claimed_items.php"> All Claimed Items</a>
+                <a href="../admin/change_item_status.php"> Change Item Status</a>
+            </div>
+            
+            <div class="sidebar-bottom">
+                <hr>
+                <a href="../view/user_profile.php"> Profile</a>
+                <a href="../login/logout.php"> Logout</a>
+            </div>
 
-        
-        <a href="../view/user_dash.php" class="brand">
-            <img src="../images/logo.png" height="64px" alt="">
-        </a>
-        <ul class="side-menu top">
-    <li id="dashboardMenuItem" >
-        <a href="../view/user_dash.php">
-            <i class='bx bxs-dashboard'></i>
-            <span class="text">Dashboard</span>
-        </a>
-    </li>
-    <li id="searchFoundItemsMenuItem" > 
-        <a href="../view/item_found.php">
-            <i class='bx bxs-report'></i>
-            <span class="text">Search Found Items</span>
-        </a>
-    </li>
-    <li id="searchLostItemsMenuItem" >
-        <a href="../view/item_lost.php">
-            <i class='bx bxs-report'></i>
-            <span class="text">Search Lost Items</span>
-        </a>
-    </li>
-    <li id="reportFoundItemMenuItem" >
-        <a href="../view/founditem_reporting_page.php">
-            <i class='bx bxs-report'></i>
-            <span class="text">Report Found Item</span>
-        </a>
-    </li>
-    <li id="reportLostItemMenuItem" >
-        <a href="../view/lostitem_reporting_page.php">
-            <i class='bx bxs-report'></i>
-            <span class="text">Report Lost Item</span>
-        </a>
-    </li>
-</ul>
-
-        <ul class="side-menu">
-            <li>
-                <a href="#">
-                    <i class='bx bxs-user'></i>
-                    <span class="text">Profile</span>
-                </a>
-            </li>
-            <li>
-                <a href="#" class="logout">
-                    <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
-                </a>
-            </li>
-        </ul>
-    
-        </div>
+</div>
 
 
-    <div class="items">
+    <div class="items shifted-content">
 
 
         <h2 style="text-align: center;"> Item Details</h2>
@@ -190,14 +126,14 @@
             <?php
                 include "../actions/display_lost_item_details.php";
 
-                
+                // Check if the itemid parameter is set in the URL
                 if (isset($_GET['itemid'])) {
                     $itemid = $_GET['itemid'];
-                    
+                    // Call the getItemDetails function to fetch item details
                     $itemDetails = getItemDetails($conn, $itemid);
 
                     if (!empty($itemDetails)) {
-                       
+                        // Display the details of the item
                         echo '<h2>Item Details</h2>';
                         echo '<img src="../uploads/' . $itemDetails['file_name'] . '" alt="Item Image" style="max-width: 300px;">'; // Display the image
                         echo '<p><strong>Item Name:</strong> ' . $itemDetails['item_name'] . '</p>';
@@ -213,12 +149,14 @@
                 } else {
                     echo '<p>Item ID is not provided.</p>';
                 }
+                mysqli_close($conn);
                 ?>
         </div>
     </div>
-
-    <script src="../js/expand_item.js"></script>
 <script src="../js/item_page.js"></script>
+    <script src="../js/expand_item.js"></script>
+
+
 
 </body>
 

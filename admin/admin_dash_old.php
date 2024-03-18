@@ -8,7 +8,7 @@
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- My CSS -->
-    <link rel="stylesheet" href="../css/admin_dash_style.css">
+    <link rel="stylesheet" href="../css/dash_style.css">
 
     <title>Lost and Found Admin Dashboard</title>
 </head>

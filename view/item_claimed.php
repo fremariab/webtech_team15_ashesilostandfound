@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="../css/item_details.css">
     <link rel="stylesheet" href="../css/user_dash_style.css">
-    <title>Lost Items</title>
+    <title>claimed Items</title>
 </head>
 <style>
     /* Previous and Next Buttons */
@@ -68,6 +68,12 @@
     margin-top: 10px;
 
 }
+
+/* #sidebar .side-menu li.active {
+    background: var(--grey);
+    position: relative;
+} */
+
 .shifted-sidebar #sidebarToggle {
     left: 220px;
 }
@@ -88,43 +94,42 @@
        <button id="sidebarToggle"><i class="material-icons">menu</i></button>
 
         <div id="sidebar">
-
-        
         <a href="../view/user_dash.php" class="brand">
             <img src="../images/logo.png" height="64px" alt="">
         </a>
         <ul class="side-menu top">
-            <li class="active">
-                <a href="../view/user_dash.php">
-                    <i class='bx bxs-dashboard'></i>
-                    <span class="text">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="../view/item_found.php">
-                    <i class='bx bxs-report'></i>
-                    <span class="text">Search Found Items</span>
-                </a>
-            </li>
-            <li>
-                <a href="../view/item_lost.php">
-                    <i class='bx bxs-report'></i>
-                    <span class="text">Search Lost Items</span>
-                </a>
-            </li>
-            <li>
-                <a href="../view/founditem_reporting_page.php">
-                    <i class='bx bxs-report'></i>
-                    <span class="text">Report Found Item</span>
-                </a>
-            </li>
-            <li>
-                <a href="../view/lostitem_reporting_page.php">
-                    <i class='bx bxs-report'></i>
-                    <span class="text">Report Lost Item</span>
-                </a>
-            </li>
-        </ul>
+    <li id="dashboardMenuItem" >
+        <a href="../view/user_dash.php">
+            <i class='bx bxs-dashboard'></i>
+            <span class="text">Dashboard</span>
+        </a>
+    </li>
+    <li id="searchclaimedItemsMenuItem" > 
+        <a href="../view/item_claimed.php">
+            <i class='bx bxs-report'></i>
+            <span class="text">Search claimed Items</span>
+        </a>
+    </li>
+    <li id="searchLostItemsMenuItem" >
+        <a href="../view/item_lost.php">
+            <i class='bx bxs-report'></i>
+            <span class="text">Search Lost Items</span>
+        </a>
+    </li>
+    <li id="reportclaimedItemMenuItem" >
+        <a href="../view/claimeditem_reporting_page.php">
+            <i class='bx bxs-report'></i>
+            <span class="text">Report claimed Item</span>
+        </a>
+    </li>
+    <li id="reportLostItemMenuItem" >
+        <a href="../view/lostitem_reporting_page.php">
+            <i class='bx bxs-report'></i>
+            <span class="text">Report Lost Item</span>
+        </a>
+    </li>
+</ul>
+
         <ul class="side-menu">
             <li>
                 <a href="#">
@@ -143,9 +148,9 @@
         </div>
 
         <div class="items shifted-content">
-            <h2>Items Lost</h2>
+            <h2>Items Claimed</h2>
 
-            <form action="../actions/lost_item_search.php" method="GET">
+            <form action="../actions/claimed_item_search.php" method="GET">
                 <div class="form-input">
                 <input type="search" name="keyword" placeholder="Search" style="width: calc(10% - 10px);float: right;">
                 <button type="submit" class="search-btn" ><i class='bx bx-search'></i></button>
@@ -174,10 +179,9 @@
                     <option value="hostels">Hostels</option>
                     <option value="other">Other</option>
                 </select>
-                
                 <div class="form-input" id="custom-location-input" style="display: none;">
-                <input type="text" id="custom-location" name="custom-location" placeholder="Enter custom location">
-                </div>
+    <input type="text" id="custom-location" name="custom-location" placeholder="Enter custom location">
+</div>
 
                 <!-- Sorting Options -->
                 <label for="sort-by">Sort By:</label>
@@ -195,7 +199,7 @@
 
                 <div class="lost">
                     <?php
-                    include "../actions/retrieve_item_lost.php";
+                    include "../actions/retrieve_item_claimed.php";
                     ?>
                 </div>
             </div>
@@ -208,8 +212,9 @@
 
         </div>
     </div>
-<script src="../js/item_lost.js"></script>
+<script src="../js/item_claimed.js"></script>
 <script src="../js/item_page.js"></script>
+
 
 </body>
 

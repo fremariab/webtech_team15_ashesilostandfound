@@ -24,7 +24,7 @@ include "../settings/core.php";
                 <input type="text" id="itemName" name="itemName">
 
                 <label style="color : green " for="locationLost">Location Lost</label>
-                <input type="text" id="locationFound" name="locationFound">
+                <input type="text" id="locationFound" name="locationLost">
                 <div>
                     <label style="color: green; display: block;" for="dateFound">Date & Time Lost</label>
                     <input type="date" id="date" name="date" style="width: 150px; display: inline-block;">

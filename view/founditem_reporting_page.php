@@ -7,7 +7,7 @@ include "../settings/core.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/Submission.css">
+    <link rel="stylesheet" href="../css/ItemLostPage.css">
     <title>Report Found Item</title>
 </head>
 
@@ -23,7 +23,7 @@ include "../settings/core.php";
                 <label style="color : green " for="itemName">Item Name</label>
                 <input type="text" id="itemName" name="itemName">
 
-                <label style="color : green " for="locationFound">Location Lost</label>
+                <label style="color : green " for="locationFound">Location Found</label>
                 <input type="text" id="locationFound" name="locationFound">
                 <div>
                     <label style="color: green; display: block;" for="dateFound">Date & Time Lost</label>

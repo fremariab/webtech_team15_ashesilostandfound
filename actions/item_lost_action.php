@@ -35,7 +35,7 @@ if (isset($_POST['submit_button'])) {
         header("Location: ../view/lostitem_reporting_page.php?error=Item Name is required");
         exit();
     } else if (empty($locationLost)) {
-        header("Location: ../view/lostitem_reporting_page.php?error=Location Found is required");
+        header("Location: ../view/lostitem_reporting_page.php?error=Location Lost is required");
         exit();
     } else if (empty($time)) {
         header("Location: ../view/lostitem_reporting_page.php?error=Time is required");
@@ -84,11 +84,11 @@ if (isset($_POST['submit_button'])) {
                 $count_items = mysqli_num_rows($result2);
 
                 if ($count_items == 0) {
-                    $sql3 = "INSERT INTO lost_items(rid,sid,image_id,item_name,time,location,description,date,interaction_time,uid,category) VALUES('$userrole',1,'$image_id' ,'$itemName','$time','$locationLost','$itemDescription',$date,NOW(),$userid,$category)";
+                    $sql3 = "INSERT INTO lost_items(rid,sid,image_id,item_name,time,location,description,datee,interaction_time,uid,category) VALUES('$userrole',1,'$image_id' ,'$itemName','$time','$locationLost','$itemDescription','$date',NOW(),'$userid','$category')";
                     $result3 = mysqli_query($conn, $sql3);
 
                     if ($result3) {
-                        header("Location: ../view/items_details_lost.php");
+                        header("Location: ../view/item_lost.php");
                     }
                 } else {
                     if ($count_items > 0) {

@@ -1,47 +1,67 @@
 <?php
+
 include "../settings/connection.php";
 
-// Get the current page from the URL parameter, default to 1 if not set
-$current_page = isset($_GET['page']) ? $_GET['page'] : 1;
+// Check if user_id is set in the session
+if (isset($_SESSION['user_id'])) {
+    // Retrieve the user ID from the session
+    $user_id = $_SESSION['user_id'];
 
-// Calculate the offset based on the current page with 10 activities
-$limit = 10;
-$offset = ($current_page - 1) * $limit;
+    // Get the current page from the URL parameter, default to 1 if not set
+    $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
-$query_activities = "
-   SELECT CONCAT(u.fname, ' ', u.lname) AS person_name, 
-       li.interaction_time AS interaction_date, 
-       'Reported a lost item' AS activity
-FROM lost_items li
-JOIN user u ON li.uid = u.uid
-UNION ALL
-SELECT CONCAT(u.fname, ' ', u.lname) AS person_name, 
-       fi.interaction_time AS interaction_date, 
-       'Found a lost item' AS activity
-FROM found_items fi
-JOIN user u ON fi.uid = u.uid
-UNION ALL
-SELECT CONCAT(u.fname, ' ', u.lname) AS person_name, 
-       ci.interaction_time AS interaction_date, 
-       'Claimed a found item' AS activity
-FROM claimed_items ci
-JOIN user u ON ci.uid = u.uid
-ORDER BY interaction_date DESC
-LIMIT $limit OFFSET $offset;
-";
+    // Calculate the offset based on the current page with 10 activities
+    $limit = 10;
+    $offset = ($current_page - 1) * $limit;
 
-$result = mysqli_query($conn, $query_activities);
+    
+    $query_activities = "
+       SELECT CONCAT(u.fname, ' ', u.lname) AS person_name, 
+           li.interaction_time AS interaction_date, 
+           'Reported a lost item' AS activity
+    FROM lost_items li
+    JOIN user u ON li.uid = u.uid
+    WHERE u.uid = $user_id
+    UNION ALL
+    SELECT CONCAT(u.fname, ' ', u.lname) AS person_name, 
+           fi.interaction_time AS interaction_date, 
+           'Found a lost item' AS activity
+    FROM found_items fi
+    JOIN user u ON fi.uid = u.uid
+    WHERE u.uid = $user_id
+    UNION ALL
+    SELECT CONCAT(u.fname, ' ', u.lname) AS person_name, 
+           ci.interaction_time AS interaction_date, 
+           'Claimed a found item' AS activity
+    FROM claimed_items ci
+    JOIN user u ON ci.uid = u.uid
+    WHERE u.uid = $user_id
+    ORDER BY interaction_date DESC
+    LIMIT $limit OFFSET $offset;
+    ";
 
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr>";
-        echo "<td><img src='img/people.png'><p>" . $row['person_name'] . "</p></td>";
-        echo "<td>" . $row['interaction_date'] . "</td>";
-        echo "<td>" . $row['activity'] . "</td>";
-        echo "</tr>";
+
+    $result = mysqli_query($conn, $query_activities);
+
+    
+    if (mysqli_num_rows($result) > 0) {
+        
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>";
+            echo "<td><img src='img/people.png'><p>" . $row['person_name'] . "</p></td>";
+            echo "<td>" . $row['interaction_date'] . "</td>";
+            echo "<td>" . $row['activity'] . "</td>";
+            echo "</tr>";
+        }
+    } else {
+        
+        echo "<tr><td colspan='3'>No recent activities found.</td></tr>";
     }
-} else {
-    echo "<tr><td colspan='3'>No recent activities found.</td></tr>";
-}
 
-mysqli_close($conn);
+    
+    mysqli_close($conn);
+} else {
+    
+    echo "You are not logged in. Please log in to view activities.";
+}
+?>

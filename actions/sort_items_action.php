@@ -41,9 +41,9 @@ if (isset($_GET['apply_filters'])) {
     }
 
     // Construct the SQL query with filtering and sorting
-    $query = "SELECT * FROM Lost_Items WHERE 1=1 $where_clause
+    $query = "SELECT * FROM lost_items WHERE 1=1 $where_clause
               UNION
-              SELECT * FROM Found_Items WHERE 1=1 $where_clause
+              SELECT * FROM found_items WHERE 1=1 $where_clause
               $order_by_clause";
 
     // Execute the query and display the results

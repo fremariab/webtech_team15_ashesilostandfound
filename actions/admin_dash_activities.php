@@ -35,7 +35,7 @@ $result = mysqli_query($conn, $query_activities);
 if (mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         echo "<tr>";
-        echo "<td><img src='img/people.png'><p>" . $row['person_name'] . "</p></td>";
+        echo "<td><p>" . $row['person_name'] . "</p></td>";
         echo "<td>" . $row['interaction_date'] . "</td>";
         echo "<td>" . $row['activity'] . "</td>";
         echo "</tr>";

@@ -7,7 +7,7 @@ function loadData(page) {
   xhr.open(
     "GET",
     "../actions/retrieve_item_lost.php?" +
-      new URLSearchParams(formData).toString(),
+    new URLSearchParams(formData).toString(),
     true
   );
   console.log("Ready state:", xhr.readyState);
@@ -22,9 +22,9 @@ function loadData(page) {
       items.forEach(function (item) {
         var itemHTML =
           '<div class="item">' +
-          '<img src="' +
-          item.image_id +
-          '" alt="" class="image">' +
+          '<img src="../uploads/' +
+          item.file_name +
+          '" alt="Item Image" height="64px" class="image">' +
           '<h3><a href="../view/items_details_lost.php?itemid=' +
           item.itemid +
           '">' +
@@ -34,7 +34,7 @@ function loadData(page) {
           item.description +
           "</p>" +
           "<p>" +
-          item.interaction_time +
+          item.sname +
           "</p>";
         ("</div>");
         itemsContainer.innerHTML += itemHTML;

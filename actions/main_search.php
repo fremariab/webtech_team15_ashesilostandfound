@@ -7,10 +7,10 @@ if (isset($_GET["keyword"])) {
     error_log("Keyword received: " . $keyword); 
     echo "Keyword received: " . $keyword;
 
-    $query = "SELECT * FROM Lost_Items 
+    $query = "SELECT * FROM lost_items 
               WHERE item_name LIKE '%$keyword%' OR location LIKE '%$keyword%' OR description LIKE '%$keyword%'
               UNION
-              SELECT * FROM Found_Items 
+              SELECT * FROM found_items 
               WHERE item_name LIKE '%$keyword%' OR location LIKE '%$keyword%' OR description LIKE '%$keyword%'";
 
     $result = mysqli_query($conn, $query);

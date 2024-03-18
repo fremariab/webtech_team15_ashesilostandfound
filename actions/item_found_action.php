@@ -34,7 +34,7 @@ if (isset($_POST['submit_button'])) {
     if (empty($itemName)) {
         header("Location: ../view/founditem_reporting_page.php?error=Item Name is required");
         exit();
-    } else if (empty($locationLost)) {
+    } else if (empty($locationFound)) {
         header("Location: ../view/founditem_reporting_page.php?error=Location Found is required");
         exit();
     } else if (empty($time)) {
@@ -65,6 +65,8 @@ if (isset($_POST['submit_button'])) {
     if ($uploadOk == 0) {
         header("Location: ../view/founditem_reporting_page.php?error=Sorry, your file was not uploaded.");
     } else {
+
+
         if (move_uploaded_file($_FILES["photo"]["tmp_name"], $target_file)) {
             $file_Size = $_FILES["photo"]["size"];
 
@@ -79,20 +81,20 @@ if (isset($_POST['submit_button'])) {
                 if ($row) {
                     $image_id = $row['image_id'];
                 }
-                $sql2 = "SELECT * from found_items where item_name='$itemName' and time='$time' and location='$locationFound'";
+                $sql2 = "SELECT * FROM found_items where item_name='$itemName' and time='$time' and location='$locationFound'";
                 $result2 = mysqli_query($conn, $sql2);
                 $count_items = mysqli_num_rows($result2);
-
                 if ($count_items == 0) {
-                    $sql3 = "INSERT INTO lost_items(rid,sid,image_id,item_name,time,location,description,date,interaction_time,uid,category) VALUES('$userrole',1,'$image_id' ,'$itemName','$time','$locationLost','$itemDescription',$date,NOW(),$userid,$category)";
+                    $sql3 = "INSERT INTO found_items(rid,sid,image_id,item_name,time,location,description,interaction_time,uid,category,datee) VALUES('$userrole',1,'$image_id' ,'$itemName','$time','$locationFound','$itemDescription',NOW(),'$userid','$category','$date')";
                     $result3 = mysqli_query($conn, $sql3);
 
                     if ($result3) {
-                        header("Location: ../view/items_details_found.php");
+                        header("Location: ../view/item_found.php");
+
                     }
                 } else {
                     if ($count_items > 0) {
-                        header("Location: ../view/founditem_reporting_page.php?error=This item has already been declared lost in");
+                        header("Location: ../view/founditem_reporting_page.php?error=This item has already been declared found");
                     }
                 }
             }

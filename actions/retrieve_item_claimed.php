@@ -1,14 +1,11 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-// session_start();
+session_start();
 include "../settings/connection.php";
 
-function getLostItems($connection, $limit, $offset, $sortBy, $itemType, $location) {
-    $sql = "SELECT l.*, i.file_name, s.sname
-    FROM lost_items l 
-    INNER JOIN image i ON l.image_id = i.image_id
-    INNER JOIN lost_status s ON l.sid = s.sid WHERE 1=1";
+function getclaimedItems($connection, $limit, $offset, $sortBy, $itemType, $location) {
+    $sql = "SELECT * FROM  claimed_items WHERE 1=1";
 
     
     if (!empty($itemType)) {
@@ -58,14 +55,14 @@ function getLostItems($connection, $limit, $offset, $sortBy, $itemType, $locatio
     }
 
 
-    $lostItems = array();
+    $claimedItems = array();
     while ($row = $result->fetch_assoc()) {
-        $lostItems[] = $row;
+        $claimedItems[] = $row;
     }
 
     $result->free();
 
-    return $lostItems;
+    return $claimedItems;
 }
 
 
@@ -80,9 +77,9 @@ $limit = 10; // Change this to the number of items you want to display per page
 $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 $offset = ($current_page - 1) * $limit;
 
-// Retrieve found items with sorting, filtering, and pagination
-$lostItems = getLostItems($conn, $limit, $offset, $sortBy, $itemType, $location);
+// Retrieve claimed items with sorting, filtering, and pagination
+$claimedItems = getclaimedItems($conn, $limit, $offset, $sortBy, $itemType, $location);
 
-// Encode the found items as JSON and echo the result
-echo json_encode($lostItems);
+// Encode the claimed items as JSON and echo the result
+echo json_encode($claimedItems);
 ?>
