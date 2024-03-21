@@ -12,7 +12,7 @@
     <h1>Lost and Found</h1>
     <nav>
         <ul>
-            <li><a href="../view/home_about.php">Home/About</a></li>
+            <li><a href="#">Home/About</a></li>
             <li><a href="#">Contact</a></li>
             <li class="searchbar">
                 <svg viewBox="0 0 24 24" aria-hidden="true" class="icon">
