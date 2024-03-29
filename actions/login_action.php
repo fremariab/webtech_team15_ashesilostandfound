@@ -32,16 +32,21 @@ if (isset($_POST['submit_button'])) {
         if (password_verify($psswrd, $row['passwd'])) {
             $_SESSION['user_id'] = $row['uid'];
             $_SESSION['user_role'] = $row['rid'];
-            if ($_SESSION['user_role'] === 1) {
-                header("Location: ../admin/admin_dash.php");
+            if ($_SESSION['user_role'] !=1) {
+                header("Location: ../view/user_dash.php");
+
                 exit();
             } else {
-                header("Location: ../view/user_dash.php");
+                header("Location: ../admin/admin_dash.php");
+
                 exit();
             }
         } else {
-            header("Location: ../login/login_view.php?error=Incorrect email or password.");
+            header("Location: ../login/login_view.php?error=Incorrect password.");
             exit();
         }
+    } else {
+        header("Location: ../login/login_view.php?error=Email is not registered.");
+        exit();
     }
 }

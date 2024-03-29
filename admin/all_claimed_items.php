@@ -1,130 +1,53 @@
-<!DOCTYPE html>
+<?php include "../settings/core.php";
+include "../actions/send_email.php";
+if ($_SESSION['user_role'] != 1)  {header("Location: ../view/user_dash.php");}
+else{
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <title>All Claimed Items</title>
+    <link rel="stylesheet" href="../css/items_display.css">
 
-    <link rel="stylesheet" href="../css/item_details.css">
-    <link rel="stylesheet" href="../css/dash_style.css">
-    <title>claimed Items</title>
 </head>
-<style>
-    /* Previous and Next Buttons */
-    .pages {
-        position: relative;
-        margin-top: 24px;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .pages button {
-        padding: 10px 20px;
-        border-radius: 10px;
-        background: var(--blue);
-        color: var(--light);
-        border: none;
-        cursor: pointer;
-        transition: background 0.3s ease;
-    }
-
-    .pages button:hover {
-        background: var(--light-orange);
-    }
-
-    #prev-btn {
-        position: absolute;
-        left: 0;
-    }
-
-    #next-btn {
-        position: absolute;
-        right: 0;
-    }
-
-    #sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background-color: #fff;
-    transition: left 0.3s ease;
-    z-index: 1000; 
-}
-
-#sidebarToggle {
-    position: fixed;
-    top: 10px;
-    left: 220px;
-    z-index: 1001; 
-}
-
-.side-menu li {
-    margin-bottom: 10px;
-    margin-top: 10px;
-
-}
-
-/* #sidebar .side-menu li.active {
-    background: var(--grey);
-    position: relative;
-} */
-
-.shifted-sidebar #sidebarToggle {
-    left: 220px;
-}
-
-.unshifted-sidebar #sidebarToggle {
-    left: 10px;
-}
-.shifted-content {
-    margin-left: 250px; 
-    transition: margin-left 0.3s ease; 
-}
-
-
-</style>
 
 <body>
-       <button id="sidebarToggle"><i class="material-icons">menu</i></button>
-       <div class = "sidebar">
-            <div class = "sidebar-logo">
-                <a href="../admin/admin_dash.php">
-                <img id = "Logo" src = "../images/logo.png" height="64px" > </a>
+    <div class="sidebar">
+        <div class="sidebar_logo">
+            <a href="../admin/admin_dash.php">
+                <img id="logo" src="../images/logo.png"> </a>
+        </div>
+        <div class="menu_top">
+            <a href="../admin/admin_dash.php"><i class="fa-solid fa-house"></i>Dashboard</a>
+            <a href="../admin/all_lost_items.php"> <i class="fa-solid fa-magnifying-glass"></i> All Lost Items</a>
+            <a href="../admin/all_found_items.php"><i class="fa-solid fa-check"></i> All Found Items</a>
+            <a href=" ../admin/all_claimed_items.php"><i class="fa-solid fa-right-left"></i> All Claimed Items</a>
+            <a href="<?php echo $mailto_link; ?>"><i class="fa-solid fa-envelope"></i> Send Weekly Mail</a>
+            <a href="#" style="margin-top: 30px;">
+                ---------------------
+            </a>
+            <a href="../admin/admin_profile.php"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="../login/logout_view.php" style="margin-right: 100px;"> <i
+                    class="fas fa-sign-out-alt"></i>Logout</a>
+        </div>
+    </div>
+    <div class="content">
+        <header class="header">
+            <h1>All Claimed Items</h1>
+        </header>
+        <form action="../actions/found_item_search.php" method="GET">
+            <div class="search_wrap">
+                <div class="search">
+                    <input class="search_bar" type="search" name="keyword" placeholder="Search">
+                    <button type="submit" class="search-btn">Go</button>
+                </div>
             </div>
-            <div class="sidebar-top">
-                <a href="../admin/admin_dash.php"> Dashboard</a>
-                <a href="../admin/all_lost_items.php"> All Lost Items</a>
-                <a href="../admin/all_found_items.php"> All Found Items</a>
-                <a href="../admin/all_claimed_items.php"> All Claimed Items</a>
-                <a href="../admin/change_item_status.php"> Change Item Status</a>'                <a href="../admin/send_mail.php"> Send mail</a>
+        </form>
 
-            </div>
-            
-            <div class="sidebar-bottom">
-                <hr>
-                <a href="../view/user_profile.php"> Profile</a>
-                <a href="../login/logout.php"> Logout</a>
-            </div>
-
-</div>
-        <div class="items shifted-content">
-            <h2>Items Claimed</h2>
-
-            <form action="../actions/claimed_item_search.php" method="GET">
-                <div class="form-input">
-                <input type="search" name="keyword" placeholder="Search" style="width: calc(10% - 10px);float: right;">
-                <button type="submit" class="search-btn" ><i class='bx bx-search'></i></button>
-            </div>
-            </form>
-            <span>Items per page: 10</span>
-
+        <div class="filter_form">
             <form id="filterForm">
-                <!-- Filtering Options -->
                 <label for="item_type">Item Type:</label>
                 <select name="item_type" id="item_type">
                     <option value="">All</option>
@@ -144,11 +67,11 @@
                     <option value="hostels">Hostels</option>
                     <option value="other">Other</option>
                 </select>
-                <div class="form-input" id="custom-location-input" style="display: none;">
-    <input type="text" id="custom-location" name="custom-location" placeholder="Enter custom location">
-</div>
 
-                <!-- Sorting Options -->
+                <div class="form-input" id="custom-location-input" style="display: none;">
+                    <input type="text" id="custom-location" name="custom-location" placeholder="Enter custom location">
+                </div>
+
                 <label for="sort-by">Sort By:</label>
                 <select name="sort-by">
                     <option value="time_desc">Time (Newest First)</option>
@@ -160,26 +83,26 @@
                 <button type="button" id="apply-filters">Apply Filters & Sort</button>
             </form>
 
-            <div class="items">
+        </div>
 
-                <div class="lost">
-                    <?php
+        
+        <div class="items">
+
+            <div class="lost">
+                <?php
                     include "../actions/retrieve_item_claimed.php";
                     ?>
-                </div>
             </div>
-
-            <!-- NEXT AND PREVIOUS BUTTON -->
-            <div class="pages">
-                <button id="prev-btn">Previous</button>
-                <button id="next-btn">Next</button>
-            </div>
-
         </div>
-<script src="../js/item_claimed.js"></script>
-<script src="../js/item_page.js"></script>
+        <div class="pages">
+            <button id="prev-btn">Previous</button>
+            <button id="next-btn">Next</button>
+        </div>
 
-
+    </div>
+    <script src="https://kit.fontawesome.com/88061bebc5.js" crossorigin="anonymous"></script>
+    <script src="../js/admin_item_claimed.js"></script>
+    <script src="../js/item_page.js"></script>
 </body>
 
-</html>
+</html><?php }?>

@@ -12,6 +12,10 @@ if (isset($_POST['submit_button'])) {
     $time = $_POST['time'];
     $date = $_POST['date'];
 
+    if ($_FILES['photo']['size'] == 0) {
+        header("Location: ../view/lostitem_reporting_pageview.php?error=Image file is required");
+        exit();
+    }
     if (isset($date)) {
         $date = date('Y-m-d', strtotime($date));
         if ($date === '1970-01-01' || strtotime($_POST['date']) === false) {
@@ -52,6 +56,7 @@ if (isset($_POST['submit_button'])) {
         exit();
     }
 
+    
     $target_dir = "../uploads/";
     $target_file = $target_dir . basename($_FILES["photo"]["name"]);
     $uploadOk = 1;

@@ -24,7 +24,7 @@ function loadData(page) {
           '<div class="item">' +
           '<img src="../uploads/' +
           item.file_name +
-          '" alt="Item Image" height="64px" class="image">' +
+          '" alt="Item Image" height="100px" class="image">' +
           '<h3><a href="../view/items_details_lost.php?itemid=' +
           item.itemid +
           '">' +
@@ -32,9 +32,6 @@ function loadData(page) {
           "</a></h3>" +
           "<p>" +
           item.description +
-          "</p>" +
-          "<p>" +
-          item.sname +
           "</p>";
         ("</div>");
         itemsContainer.innerHTML += itemHTML;

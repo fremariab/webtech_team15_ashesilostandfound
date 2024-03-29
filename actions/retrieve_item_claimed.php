@@ -5,9 +5,10 @@ session_start();
 include "../settings/connection.php";
 
 function getclaimedItems($connection, $limit, $offset, $sortBy, $itemType, $location) {
-    $sql = "SELECT * FROM  claimed_items WHERE 1=1";
+    $sql = "SELECT c.*, i.file_name 
+    FROM claimed_items c
+    INNER JOIN image i ON c.image_id = i.image_id";
 
-    
     if (!empty($itemType)) {
         $sql .= " AND category = '$itemType'";
     }

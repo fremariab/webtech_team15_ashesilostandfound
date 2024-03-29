@@ -17,8 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
   sidebar.classList.add("shifted-sidebar");
   sidebarToggle.classList.add("shifted-sidebar");
 
-  function toggleSidebar()
-  {
+  function toggleSidebar() {
     console.log("in toggle func");
     if (sidebar.style.left === "0px") {
       sidebar.style.left = "-250px";

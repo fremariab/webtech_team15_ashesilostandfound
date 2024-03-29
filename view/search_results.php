@@ -1,10 +1,12 @@
+<?php  
+include "../settings/core.php"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
-    <link rel="stylesheet" href="../css/item_details.css">
+    <link rel="stylesheet" href="../css/items_display.css">
     <link rel="stylesheet" href="../css/user_dash_style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -121,7 +123,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="logout">
+                    <a href="../login/logout_view.php" class="logout">
                         <i class='bx bxs-log-out-circle'></i>
                         <span class="text">Logout</span>
                     </a>

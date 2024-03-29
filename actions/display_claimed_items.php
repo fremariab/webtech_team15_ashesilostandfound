@@ -8,10 +8,10 @@ function getItemDetails($conn, $itemid) {
 
     $itemid = mysqli_real_escape_string($conn, $itemid);
 
-    $sql = "SELECT c.*, i.file_name, s.sname
-            FROM claimed_items f 
+    $sql = "SELECT c.*, i.file_name
+            FROM claimed_items c 
             INNER JOIN image i ON c.image_id = i.image_id
-            WHERE c.itemid = $itemid";
+            WHERE c.claim_id = '$itemid'";
     $result = mysqli_query($conn, $sql);
 
     if($result && mysqli_num_rows($result) > 0) {
@@ -25,7 +25,8 @@ function getItemDetails($conn, $itemid) {
         $itemDetails['description'] = $item['description'];
         $itemDetails['interaction_time'] = $item['interaction_time'];
         $itemDetails['location'] = $item['location'];
-        
+        $itemDetails['itemid'] = $item['claim_id'];
+
     }
 
   

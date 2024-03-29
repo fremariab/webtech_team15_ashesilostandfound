@@ -8,3 +8,4 @@ function ifLoggedIn()
         die();
     }
 }
+ifLoggedIn();

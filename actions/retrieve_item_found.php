@@ -1,7 +1,6 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-session_start();
 include "../settings/connection.php";
 
 function getFoundItems($connection, $limit, $offset, $sortBy, $itemType, $location) {
@@ -21,11 +20,11 @@ function getFoundItems($connection, $limit, $offset, $sortBy, $itemType, $locati
             if (!empty($_GET['custom-location'])) {
                 $customLocation = $connection->real_escape_string($_GET['custom-location']);
                 // echo "Custom Location: " . $customLocation;
-                $sql .= " AND location LIKE '%$customLocation%'";
+                $sql .= " OR location LIKE '%$customLocation%'";
                 // echo "sql " . $sql;
             }
         } else {
-            $sql .= " AND location = '$location'";
+            $sql .= " OR location = '$location'";
             // echo "sql " . $sql;
         }
     }

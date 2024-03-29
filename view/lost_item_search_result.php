@@ -1,138 +1,42 @@
+<?php  
+include "../settings/core.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results</title>
-    <link rel="stylesheet" href="../css/item_details.css">
-    <link rel="stylesheet" href="../css/user_dash_style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../css/items_display.css">
 </head>
-<style>
-    /* Previous and Next Buttons */
-    .pages {
-        position: relative;
-        margin-top: 24px;
-        display: flex;
-        justify-content: space-between;
-    }
 
-    .pages button {
-        padding: 10px 20px;
-        border-radius: 10px;
-        background: var(--blue);
-        color: var(--light);
-        border: none;
-        cursor: pointer;
-        transition: background 0.3s ease;
-    }
-
-    .pages button:hover {
-        background: var(--light-orange);
-    }
-
-    #prev-btn {
-        position: absolute;
-        left: 0;
-    }
-
-    #next-btn {
-        position: absolute;
-        right: 0;
-    }
- #sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100%;
-    background-color: #fff;
-    transition: left 0.3s ease;
-    z-index: 1000; 
-}
-
-#sidebarToggle {
-    position: fixed;
-    top: 10px;
-    z-index: 1001; 
-}
-
-.side-menu li {
-    margin-bottom: 10px;
-    margin-top: 10px;
-
-}
-.shifted-sidebar #sidebarToggle {
-    left: 220px;
-}
-
-.unshifted-sidebar #sidebarToggle {
-    left: 10px;
-}
-.shifted-content {
-    margin-left: 250px; 
-    transition: margin-left 0.3s ease; 
-}
-</style>
 <body>
-    <div class="overall">
-        <button id="sidebarToggle"><i class="material-icons">menu</i></button>
-        <div id="sidebar">
-            <a href="../view/user_dash.php" class="brand">
-                <img src="../images/logo.png" height="64px" alt="">
-            </a>
-            <ul class="side-menu top">
-                <li class="active">
-                    <a href="#">
-                        <i class='bx bxs-dashboard'></i>
-                        <span class="text">Dashboard</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../view/item_found.php">
-                        <i class='bx bxs-report'></i>
-                        <span class="text">Search Found Items</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../view/item_lost.php">
-                        <i class='bx bxs-report'></i>
-                        <span class="text">Search Lost Items</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../view/founditem_reporting_page.php">
-                        <i class='bx bxs-report'></i>
-                        <span class="text">Report Found Item</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="../view/lostitem_reporting_page.php">
-                        <i class='bx bxs-report'></i>
-                        <span class="text">Report Lost Item</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="side-menu">
-                <li>
-                    <a href="#">
-                        <i class='bx bxs-user'></i>
-                        <span class="text">Profile</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="logout">
-                        <i class='bx bxs-log-out-circle'></i>
-                        <span class="text">Logout</span>
-                    </a>
-                </li>
-            </ul>
+    <div class="sidebar">
+        <div class="sidebar_logo">
+            <a href="../view/user_dash.php">
+                <img id="logo" src="../images/logo.png"> </a>
         </div>
+        <div class="menu_top">
+            <a href="../view/user_dash.php"><i class="fa-solid fa-house"></i>Dashboard</a>
+            <a href="../view/item_lost.php"> <i class="fa-solid fa-magnifying-glass"></i> Search Lost Items</a>
+            <a href="../view/item_found.php"><i class="fa-solid fa-check"></i> Search Found Items</a>
+            <a href="../view/founditem_reporting_page.php"><i class="fa-solid fa-align-justify"></i> Report Found Item</a>
+            <a href="../view/lostitem_reporting_page.php"><i class="fa-solid fa-align-justify"></i> Report Lost Item</a>
+            <a href="#" style="margin-top: 30px;">
+                ---------------------
+            </a>
+            <a href="../view/user_profile.php"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="../login/logout_view.php" style="margin-right: 100px;"> <i
+                    class="fas fa-sign-out-alt"></i>Logout</a>
+        </div>
+    </div>
+    <div class="content">
 
-         <!-- Content Area -->
-        <div class="items shifted-content">
-            <h1>Search Results</h1>
-            <div class="search-results">
+        <header class="header">
+            <h1>Search Results Found</h1>
+        </header>
+        <div class="search-results">
                <!-- Pagination Logic -->
  <?php
        if (isset($_GET["results"]) && isset($_GET["total_rows"])) {
@@ -174,8 +78,53 @@
        }
        ?>   </div>
         </div>
+    
     </div>
 
+    <script src="https://kit.fontawesome.com/88061bebc5.js" crossorigin="anonymous"></script>
+    <script src="../js/item_page.js"></script>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "../actions/user_dash_stats.php", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log("Yes")
+                var statistics = JSON.parse(xhr.responseText);
+                console.log("Statistics:", statistics);
+
+                document.getElementById("found-items-count").textContent = statistics.found_items;
+                document.getElementById("lost-items-count").textContent = statistics.lost_items;
+                document.getElementById("claimed-items-count").textContent = statistics.claimed_items;
+            }
+        };
+        xhr.send();
+
+        var currentPage = 1;
+
+        function loadNextPage() {
+            currentPage++;
+            loadData(currentPage);
+        }
+
+        function loadPreviousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                loadData(currentPage);
+            }
+        }
+
+        function loadData(page) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "../actions/user_dash_activities.php?page=" + page, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var tableBody = document.getElementById("activity-table-body");
+                    tableBody.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.send();
+        }
+    </script>
 </body>
-<script src="../js/item_page.js"></script>
+
 </html>

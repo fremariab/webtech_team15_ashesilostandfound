@@ -1,3 +1,5 @@
+<?php  
+include "../settings/core.php"?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +10,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
-    <link rel="stylesheet" href="../css/item_details.css">
+    <link rel="stylesheet" href="../css/items_display.css">
     <link rel="stylesheet" href="../css/user_dash_style.css">
     <title>claimed Items</title>
 </head>
@@ -138,7 +140,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="logout">
+                <a href="../login/logout.php" class="logout">
                     <i class='bx bxs-log-out-circle'></i>
                     <span class="text">Logout</span>
                 </a>

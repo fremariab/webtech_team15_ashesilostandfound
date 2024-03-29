@@ -1,14 +1,16 @@
 <?php include "../settings/core.php";
 include "../actions/send_email.php";
+include "../actions/get_user_data.php";
 
-?><!DOCTYPE html>
+if ($_SESSION['user_role'] != 1)  {header("Location: ../view/user_dash.php");}
+else{?><!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Item Details</title>
-    <link rel="stylesheet" href="../css/item_detail.css">
+    <title>Administrator Profile</title>
+    <link rel="stylesheet" href="../css/profile.css">
 
 </head>
 
@@ -33,38 +35,15 @@ include "../actions/send_email.php";
         </div>
     </div>
     <div class="content">
-    <div class="lost">
-            <?php
-                include "../actions/display_claimed_items.php";
-
-                
-                if (isset($_GET['itemid'])) {
-                    $itemid = $_GET['itemid'];
-                    
-                    $itemDetails = getItemDetails($conn, $itemid);
-
-                    if (!empty($itemDetails)) {
-                       
-                        echo '<h2>Item Details</h2>';
-                        echo '<img src="../uploads/' . $itemDetails['file_name'] . '" alt="Item Image" style="max-width: 300px;">'; // Display the image
-                        echo '<p><strong>Item Name:</strong> ' . $itemDetails['item_name'] . '</p>';
-                        echo '<p><strong>Description:</strong> ' . $itemDetails['description'] . '</p>';
-                        echo '<p><strong>Location</strong> ' . $itemDetails['location'] . '</p>';
-                        
-                        echo '<p><strong>Category:</strong> ' . $itemDetails['category'] . '</p>';
-
-                    } else {
-                        echo '<p>No item found with the provided ID.</p>';
-                    }
-                } else {
-                    echo '<p>Item ID is not provided.</p>';
-                }
-                ?>
-        </div>
+    <header class="header">
+            <h1>Admin Profile</h1>
+        </header>
+            <p><strong>First Name:</strong> <?php echo $userData['fname']; ?></p>
+            <p><strong>Last Name:</strong> <?php echo $userData['lname']; ?></p>
+            <p><strong>Gender:</strong> <?php echo ($userData['gender'] == 1) ? 'Male' : 'Female'; ?></p>
+            <p><strong>Telephone:</strong> <?php echo $userData['tel']; ?></p>
+            <p><strong>Email:</strong> <?php echo $userData['email']; ?></p>
     </div>
     <script src="https://kit.fontawesome.com/88061bebc5.js" crossorigin="anonymous"></script>
-    <script src="../js/expand_item.js"></script>
-    <script src="../js/item_page.js"></script>
 </body>
-
 </html><?php }?>

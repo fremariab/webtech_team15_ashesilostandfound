@@ -10,6 +10,7 @@ function loadData(page) {
         new URLSearchParams(formData).toString(),
         true
     );
+    console.log("Ready state:", xhr.readyState);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             console.log(xhr.responseText);
@@ -19,19 +20,15 @@ function loadData(page) {
             items.forEach(function (item) {
                 var itemHTML =
                     '<div class="item">' +
-                    '<img src="' +
-                    item.image_id +
-                    '" alt="" class="image" height="100px">' +
-                    '<h3><a href="../view/items_claimed.php?itemid=' +
-                    item.itemid +
+                    '<img src="../uploads/' + item.file_name +
+                    '" alt=Item Image" class="image" height="100px">' +
+                    '<h3><a href="../admin/view_item_detail_claimed.php?itemid=' +
+                    item.claim_id +
                     '">' +
                     item.item_name +
                     "</a></h3>" +
                     "<p>" +
                     item.description +
-                    "</p>" +
-                    "<p> Status: " +
-                    item.sname +
                     "</p>" +
                     // '<p>' + item.interaction_time + '</p>' +
                     "</div>";

@@ -26,7 +26,14 @@ function getItemDetails($conn, $itemid) {
         $itemDetails['description'] = $item['description'];
         $itemDetails['interaction_time'] = $item['interaction_time'];
         $itemDetails['location'] = $item['location'];
-        $itemDetails['status'] = $item['sname'];
+        $itemDetails['itemid'] = $item['itemid'];
+        $itemDetails['image_id'] = $item['image_id'];
+        $itemDetails['sid'] = $item['sid'];
+        $itemDetails['rid'] = $item['rid'];
+        $itemDetails['datee'] = $item['datee'];
+        $itemDetails['time'] = $item['time'];
+        $itemDetails['uid'] = $item['uid'];
+
         
     }
 

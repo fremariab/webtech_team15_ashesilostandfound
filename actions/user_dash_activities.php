@@ -1,6 +1,13 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    // Start the session
+    session_start();
+}
 
 include "../settings/connection.php";
+
+// ini_set('display_errors', 1);
+// error_reporting(E_ALL);
 
 // Check if user_id is set in the session
 if (isset($_SESSION['user_id'])) {
@@ -48,7 +55,7 @@ if (isset($_SESSION['user_id'])) {
         
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
-            echo "<td><img src='img/people.png'><p>" . $row['person_name'] . "</p></td>";
+            echo "<td>".$row['person_name'] . "</p></td>";
             echo "<td>" . $row['interaction_date'] . "</td>";
             echo "<td>" . $row['activity'] . "</td>";
             echo "</tr>";
@@ -62,6 +69,8 @@ if (isset($_SESSION['user_id'])) {
     mysqli_close($conn);
 } else {
     
+    // echo "none";
+
     echo "You are not logged in. Please log in to view activities.";
 }
 ?>
