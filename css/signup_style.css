@@ -9,25 +9,35 @@
 }
 
 body {
-    min-height: 100vh;
     width: 100%;
     background: #1C402E;
-    overflow-y: auto;
+}
+
+.parent {
+    position: relative;
+    width: 100%;
+    height: 185vh;
+}
+
+.logo {
+    position: absolute;
+    top: 50%;
+    right: 75%;
+    transform: translate(50%, -50%);
 }
 
 .container {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    right: 50%;
+    transform: translate(100%, -50%);
     max-width: 430px;
     width: 100%;
     background: #fff;
     border-radius: 7px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    height: 80vh;
-    overflow-y: auto;
 }
+
 
 .container .form {
     padding: 2rem;
