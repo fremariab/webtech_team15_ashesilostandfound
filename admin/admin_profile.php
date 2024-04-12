@@ -22,9 +22,7 @@ else{?><!DOCTYPE html>
         </div>
         <div class="menu_top">
             <a href="../admin/admin_dash.php"><i class="fa-solid fa-house"></i>Dashboard</a>
-            <a href="../admin/all_lost_items.php"> <i class="fa-solid fa-magnifying-glass"></i> All Lost Items</a>
-            <a href="../admin/all_found_items.php"><i class="fa-solid fa-check"></i> All Found Items</a>
-            <a href=" ../admin/all_claimed_items.php"><i class="fa-solid fa-right-left"></i> All Claimed Items</a>
+            <a href="../admin/all_wishlist_items.php"> <i class="fa-solid fa-magnifying-glass"></i> All Wishlist Items</a>
             <a href="<?php echo $mailto_link; ?>"><i class="fa-solid fa-envelope"></i> Send Weekly Mail</a>
             <a href="#" style="margin-top: 30px;">
                 ---------------------
@@ -40,7 +38,12 @@ else{?><!DOCTYPE html>
         </header>
             <p><strong>First Name:</strong> <?php echo $userData['fname']; ?></p>
             <p><strong>Last Name:</strong> <?php echo $userData['lname']; ?></p>
-            <p><strong>Gender:</strong> <?php echo ($userData['gender'] == 1) ? 'Male' : 'Female'; ?></p>
+            <p><strong>Gender:</strong> <?php 
+                echo ($userData['gender'] == 'Male') ? 'Male' : 
+                ($userData['gender'] == 'Female') ? 'Female' : 
+                'Other'; 
+            ?></p>
+
             <p><strong>Telephone:</strong> <?php echo $userData['tel']; ?></p>
             <p><strong>Email:</strong> <?php echo $userData['email']; ?></p>
     </div>

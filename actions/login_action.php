@@ -22,7 +22,7 @@ if (isset($_POST['submit_button'])) {
         exit();
     }
 
-    $sql = "SELECT * FROM user where email='$user_mail'";
+    $sql = "SELECT * FROM User where email='$user_mail'";
 
     $result = mysqli_query($conn, $sql);
 
@@ -32,21 +32,16 @@ if (isset($_POST['submit_button'])) {
         if (password_verify($psswrd, $row['passwd'])) {
             $_SESSION['user_id'] = $row['uid'];
             $_SESSION['user_role'] = $row['rid'];
-            if ($_SESSION['user_role'] !=1) {
-                header("Location: ../view/user_dash.php");
-
+            if ($_SESSION['user_role'] === 1) {
+                header("Location: ../admin/admin_dash.php");
                 exit();
             } else {
-                header("Location: ../admin/admin_dash.php");
-
+                header("Location: ../view/user_dash.php");
                 exit();
             }
         } else {
-            header("Location: ../login/login_view.php?error=Incorrect password.");
+            header("Location: ../login/login_view.php?error=Incorrect email or password.");
             exit();
         }
-    } else {
-        header("Location: ../login/login_view.php?error=Email is not registered.");
-        exit();
     }
 }

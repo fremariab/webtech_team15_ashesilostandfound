@@ -1,9 +1,9 @@
 <?php
 
-$SERVER = "localhost";
-$USERNAME = "root";
-$PSSWRD = "cs341webtech";
-$DATABASE = "lost_n_found";
+$SERVER = "sql201.infinityfree.com";
+$USERNAME = "if0_36348885";
+$PSSWRD = "WebTech2024";
+$DATABASE = "if0_36348885_Wishlist";
 
 $conn = new mysqli($SERVER, $USERNAME, $PSSWRD, $DATABASE);
 

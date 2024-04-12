@@ -1,4 +1,8 @@
-<?php include "../settings/core.php"?><!DOCTYPE html>
+<?php include "../settings/core.php";
+include "../actions/send_email.php";
+if ($_SESSION['user_role'] != 1)  {header("Location: ../view/user_dash.php");}
+else{
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,20 +15,18 @@
 
 <body>
     <div class="sidebar">
-    <div class="sidebar_logo">
-            <a href="../view/user_dash.php">
+        <div class="sidebar_logo">
+            <a href="../admin/admin_dash.php">
                 <img id="logo" src="../images/logo.png"> </a>
         </div>
         <div class="menu_top">
-            <a href="../view/user_dash.php"><i class="fa-solid fa-house"></i>Dashboard</a>
-            <a href="../view/item_lost.php"> <i class="fa-solid fa-magnifying-glass"></i> Search Lost Items</a>
-            <a href="../view/item_found.php"><i class="fa-solid fa-check"></i> Search Found Items</a>
-            <a href="../view/founditem_reporting_page.php"><i class="fa-solid fa-align-justify"></i> Report Found Item</a>
-            <a href="../view/lostitem_reporting_page.php"><i class="fa-solid fa-align-justify"></i> Report Lost Item</a>
+            <a href="../admin/admin_dash.php"><i class="fa-solid fa-house"></i>Dashboard</a>
+            <a href="../admin/all_wishlist_items.php"> <i class="fa-solid fa-magnifying-glass"></i> All Wishlist Items</a>
+            <a href="<?php echo $mailto_link; ?>"><i class="fa-solid fa-envelope"></i>Send Weekly Mail</a>
             <a href="#" style="margin-top: 30px;">
                 ---------------------
             </a>
-            <a href="../view/user_profile.php"><i class="fa-solid fa-user"></i> Profile</a>
+            <a href="../admin/admin_profile.php"><i class="fa-solid fa-user"></i> Profile</a>
             <a href="../login/logout_view.php" style="margin-right: 100px;"> <i
                     class="fas fa-sign-out-alt"></i>Logout</a>
         </div>
@@ -32,7 +34,7 @@
     <div class="content">
     <div class="lost">
             <?php
-                include "../actions/display_lost_item_details.php";
+                include "../actions/display_item_details.php";
 
                 
                 if (isset($_GET['itemid'])) {
@@ -42,12 +44,25 @@
 
                     if (!empty($itemDetails)) {
                        
+                        
                         echo '<h2>Item Details</h2>';
                         echo '<img src="../uploads/' . $itemDetails['file_name'] . '" alt="Item Image" style="max-width: 300px;">'; // Display the image
                         echo '<p><strong>Item Name:</strong> ' . $itemDetails['item_name'] . '</p>';
                         echo '<p><strong>Description:</strong> ' . $itemDetails['description'] . '</p>';
-                        echo '<p><strong>Location</strong> ' . $itemDetails['location'] . '</p>';
                         echo '<p><strong>Category:</strong> ' . $itemDetails['category'] . '</p>';
+                        echo '<p><strong>Change Status:</strong> <a href="../actions/change_item_status_action.php?';
+                        echo '&description=' . urlencode($itemDetails['description']);
+                        echo '&category=' . urlencode($itemDetails['category']);
+                        echo '&status=' . urlencode($itemDetails['sid']);
+                        echo '&itemid=' . urlencode($itemDetails['itemid']);
+                        echo '&imageid=' . urlencode($itemDetails['image_id']);
+                        echo '&rid=' . urlencode($itemDetails['rid']);
+                        echo '&uid=' . urlencode($itemDetails['uid']);
+                        echo '&item_name=' . urlencode($itemDetails['item_name']);
+
+                        echo '" style="color:#1c402e"><i class="fa-solid fa-pen-to-square"></i></a></p>';  
+                    } else {
+                        echo '<p>No item found with the provided ID.</p>';
                     }
                 } else {
                     echo '<p>Item ID is not provided.</p>';
@@ -60,4 +75,4 @@
     <script src="../js/item_page.js"></script>
 </body>
 
-</html>
+</html><?php }?>

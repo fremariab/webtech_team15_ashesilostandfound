@@ -1,5 +1,4 @@
 <?php
-
 include "../settings/connection.php";
 
 if (isset($_GET["keyword"])) {
@@ -38,4 +37,3 @@ if (isset($_GET["keyword"])) {
     // header("Location: ../view/search_result_page.php?results=none");
     exit();
 }
-?>

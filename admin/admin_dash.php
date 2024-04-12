@@ -22,9 +22,7 @@ include "../actions/send_email.php";
         </div>
         <div class="menu_top">
             <a href="../admin/admin_dash.php"><i class="fa-solid fa-house"></i>Dashboard</a>
-            <a href="../admin/all_lost_items.php"> <i class="fa-solid fa-magnifying-glass"></i> All Lost Items</a>
-            <a href="../admin/all_found_items.php"><i class="fa-solid fa-check"></i> All Found Items</a>
-            <a href=" ../admin/all_claimed_items.php"><i class="fa-solid fa-right-left"></i> All Claimed Items</a>
+            <a href="../admin/all_wishlist_items.php"> <i class="fa-solid fa-magnifying-glass"></i> All Wishlist Items</a>
             <a href="<?php echo $mailto_link; ?>"><i class="fa-solid fa-envelope"></i> Send Weekly Mail</a>
             <a href="#" style="margin-top: 30px;">
                 ---------------------
@@ -42,21 +40,10 @@ include "../actions/send_email.php";
 
         <section class="stats">
             <div class="box">
-                <i class="fa-solid fa-check"></i>
-                <h3 id="found-items-count"></h3>
-                <p>Found Items</p>
-            </div>
-            <div class="box">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <h3 id="lost-items-count">
+                <h3 id="wishlist-items-count">
                 </h3>
-                <p>Lost Items</p>
-            </div>
-            <div class="box">
-                <i class="fa-solid fa-right-left"></i>
-                <h3 id="claimed-items-count">
-                </h3>
-                <p>Claimed Items</p>
+                <p>Items in the Wishlist</p>
             </div>
         </section>
         <section class="recent-activities">
@@ -92,9 +79,7 @@ include "../actions/send_email.php";
                 var statistics = JSON.parse(xhr.responseText);
                 console.log("Statistics:", statistics);
 
-                document.getElementById("found-items-count").textContent = statistics.found_items;
-                document.getElementById("lost-items-count").textContent = statistics.lost_items;
-                document.getElementById("claimed-items-count").textContent = statistics.claimed_items;
+                document.getElementById("wishlist-items-count").textContent = statistics.Wishlist_Items;
             }
         };
         xhr.send();

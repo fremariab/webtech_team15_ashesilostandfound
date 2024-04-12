@@ -44,7 +44,7 @@ if (isset($_POST['submit_button'])) {
         exit();
     }
 
-    $sql = "Select * from user where email='$register_email'";
+    $sql = "Select * from User where email='$register_email'";
     $result = mysqli_query($conn, $sql);
     $count_email = mysqli_num_rows($result);
 
@@ -54,7 +54,7 @@ if (isset($_POST['submit_button'])) {
 
             $hash = password_hash($register_password, PASSWORD_DEFAULT);
 
-            $sql = "INSERT INTO user(rid,fname, lname, gender,tel,email,passwd) VALUES('$rid','$fname' ,'$lname','$gender', '$phone_number','$register_email','$hash')";
+            $sql = "INSERT INTO User(rid,fname, lname, gender,tel,email,passwd) VALUES('$rid','$fname' ,'$lname','$gender', '$phone_number','$register_email','$hash')";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {

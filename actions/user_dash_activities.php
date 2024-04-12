@@ -1,6 +1,6 @@
 <?php
 if (session_status() == PHP_SESSION_NONE) {
-    // Start the session
+    // start the session
     session_start();
 }
 
@@ -9,15 +9,15 @@ include "../settings/connection.php";
 // ini_set('display_errors', 1);
 // error_reporting(E_ALL);
 
-// Check if user_id is set in the session
+// check if user_id is set in the session
 if (isset($_SESSION['user_id'])) {
-    // Retrieve the user ID from the session
+    // retrieve the user ID from the session
     $user_id = $_SESSION['user_id'];
 
-    // Get the current page from the URL parameter, default to 1 if not set
+    // get the current page from the URL parameter, default to 1 if not set
     $current_page = isset($_GET['page']) ? $_GET['page'] : 1;
 
-    // Calculate the offset based on the current page with 10 activities
+    // calculate the offset based on the current page with 10 activities
     $limit = 10;
     $offset = ($current_page - 1) * $limit;
 
@@ -56,12 +56,10 @@ if (isset($_SESSION['user_id'])) {
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             echo "<td>".$row['person_name'] . "</p></td>";
-            echo "<td>" . $row['interaction_date'] . "</td>";
             echo "<td>" . $row['activity'] . "</td>";
             echo "</tr>";
         }
     } else {
-        
         echo "<tr><td colspan='3'>No recent activities found.</td></tr>";
     }
 
@@ -73,4 +71,3 @@ if (isset($_SESSION['user_id'])) {
 
     echo "You are not logged in. Please log in to view activities.";
 }
-?>
